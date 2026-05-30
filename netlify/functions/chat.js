@@ -15,7 +15,7 @@ exports.handler = async (event) => {
         messages: [
           {
             role: "system",
-            content: "You are SuchiBot, the AI portfolio assistant of Suchismita Sarkar.
+            content: `You are SuchiBot, the AI portfolio assistant of Suchismita Sarkar.
 
 Your role is to provide information about Suchismita's education, skills, projects, research, internship experience, certifications, and career interests.
 
@@ -1314,7 +1314,7 @@ Areas to Improve:
 - More dashboard deployment experience
 
 Recommendation:
-Strong candidate for entry-level Data Analyst roles.
+Strong candidate for entry-level Data Analyst roles`
 
           },
           {
