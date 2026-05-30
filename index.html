@@ -9,6 +9,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        html,body{
+    overflow-x:hidden;
+}
         *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
         :root{
             --bg:#10080d;--bg2:#0D1117;--bg3:#111820;
@@ -25,13 +28,57 @@
         #progressBar{position:fixed;top:0;left:0;height:2px;width:0;background:linear-gradient(90deg,var(--accent),var(--accent2),var(--accent3));z-index:9999;transition:width .15s;}
 
         /* NAV */
-        nav{position:fixed;top:0;width:100%;z-index:1000;background:rgba(8,11,16,0.88);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
-        .nav-inner{max-width:1260px;margin:0 auto;padding:0 32px;height:64px;display:flex;align-items:center;justify-content:space-between;}
-        .logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.5rem;color:var(--text);text-decoration:none;}
-        .logo span{background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
-        .nav-links{list-style:none;display:flex;gap:4px;}
+        nav{
+    position:fixed;
+    top:0;
+    width:100%;
+    z-index:1000;
+    background:rgba(8,11,16,0.88);
+    backdrop-filter:blur(20px);
+    border-bottom:1px solid var(--border);
+}
+        .nav-links{
+    list-style:none !important;
+    margin:0 !important;
+    padding:0 !important;
+
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:10px;
+}
+
+.nav-links li{
+    list-style:none !important;
+    margin:0 !important;
+    padding:0 !important;
+}
         .nav-links a{color:var(--text3);text-decoration:none;font-size:0.78rem;font-weight:500;letter-spacing:0.02em;padding:6px 10px;border-radius:8px;transition:all .2s;text-transform:uppercase;}
         .nav-links a:hover{color:var(--text);background:rgba(255,255,255,0.05);}
+
+        .nav-inner{
+    max-width:1260px;
+    margin:0 auto;
+    padding:0 32px;
+    height:64px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.logo{
+    font-family:'Syne',sans-serif;
+    font-weight:800;
+    font-size:1.5rem;
+    color:var(--text);
+    text-decoration:none;
+}
+
+.logo span{
+    background:linear-gradient(135deg,var(--accent),var(--accent2));
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
 
         /* HERO — FIX 5: compact so everything fits in viewport */
         .hero{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;padding:80px 20px 40px;}
@@ -239,8 +286,12 @@
         .footer-copy{font-size:0.82rem;color:var(--text3);text-align:center;}
 
          /* FAB — no white outline */
-        .fab{position:fixed;bottom:28px;left:28px;z-index:1000;}
-        .fab-btn{width:50px;height:50px;border-radius:14px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1.1rem;transition:all .25s;border:none;box-shadow:0 4px 16px rgba(79,158,255,0.3);outline:none;}
+        .fab{
+    position:fixed;
+    bottom:10px;
+    left:20px;
+}
+        .fab-btn{width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center;color:#fff;cursor:pointer;font-size:0.875rem;transition:all .25s;border:none;box-shadow:0 4px 16px rgba(79,158,255,0.3);outline:none;}
         .fab-btn:hover{transform:scale(1.05);box-shadow:0 6px 22px rgba(79,158,255,0.5);}
         .fab-btn:focus{outline:none;box-shadow:0 4px 16px rgba(79,158,255,0.3);}
         .fab-menu{position:absolute;bottom:60px;left:0;display:none;flex-direction:column;gap:8px;min-width:200px;}
@@ -251,10 +302,38 @@
     
         
     /* CHATBOT */
-        .chatbot-wrap{position:fixed;bottom:20px;right:28px;z-index:1001;display:flex;flex-direction:column;align-items:flex-end;}
-        .chatbot-toggle{width:52px;height:52px;border-radius:16px;background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center;color:#fff;cursor:pointer;border:none;font-size:1.25rem;margin-top:10px;transition:all .3s;box-shadow:0 8px 24px rgba(79,158,255,0.3);}
+        .chatbot-wrap{
+    position:fixed;
+    bottom:10px;
+    right:28px;
+    z-index:1001;
+    display:flex;
+    flex-direction:column;
+    align-items:flex-end;
+
+    /* IMPORTANT */
+    pointer-events:none;
+}
+        .chatbot-toggle{
+    width:56px;
+    height:56px;
+    border-radius:50%;
+    background:linear-gradient(135deg,var(--accent),var(--accent2));
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#fff;
+    cursor:pointer;
+    border:none;
+    font-size:1.25rem;
+    margin-top:0px;
+    transition:all .3s;
+    box-shadow:0 8px 24px rgba(79,158,255,0.3);
+
+    pointer-events:auto;
+}
         .chatbot-toggle:hover{transform:scale(1.05);}
-        .chatbot-window{width:370px;height:510px;background:var(--card);border:1px solid var(--border2);border-radius:20px;display:flex;flex-direction:column;overflow:hidden;margin-bottom:10px;transform:scale(0.95) translateY(10px);opacity:0;visibility:hidden;transition:all .3s;pointer-events:none;}
+        .chatbot-window{width:370px;height:510px;background:var(--card);border:1px solid var(--border2);border-radius:20px;display:flex;flex-direction:column;overflow:hidden;margin-bottom:0px;transform:scale(0.95) translateY(10px);opacity:0;visibility:hidden;transition:all .3s;pointer-events:none;}
         .chatbot-window.active{transform:scale(1) translateY(0);opacity:1;visibility:visible;pointer-events:auto;}
         .chatbot-header{background:linear-gradient(135deg,rgba(79,158,255,0.14),rgba(176,110,255,0.14));border-bottom:1px solid var(--border);padding:14px 16px;display:flex;justify-content:space-between;align-items:center;}
         .chatbot-head-left{display:flex;align-items:center;gap:10px;}
@@ -285,25 +364,192 @@
         .chatbot-inp:focus{border-color:rgba(79,158,255,0.35);}
         .chatbot-send-btn{width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent2));border:none;color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;}
         .chatbot-send-btn:hover{transform:scale(1.06);}
+        
 
         /* SCROLL ANIM */
         .reveal{opacity:0;transform:translateY(26px);transition:opacity .6s ease,transform .6s ease;}
         .reveal.in{opacity:1;transform:translateY(0);}
 
-        @media(max-width:900px){
-            .contact-grid{grid-template-columns:1fr;}
-            .timeline-wrap::before{left:20px;}
-            .tl-row{grid-template-columns:0 20px 1fr;}
-            .tl-left{display:none;}.tl-right{padding-left:16px;}
-            .projects-grid{grid-template-columns:1fr;}
-        }
-        @media(max-width:768px){
-            .nav-links{display:none;}
-            .hero h1{font-size:2.4rem;}
-            .section{padding:60px 0;}
-            .footer-inner{flex-direction:column;text-align:center;align-items:center;}
-            .chatbot-window{width:calc(100vw - 36px);}
-        }
+    
+@media(max-width:900px){
+
+    .contact-grid{
+        grid-template-columns:1fr;
+    }
+
+    .timeline-wrap::before{
+        left:20px;
+    }
+
+    .tl-row{
+        grid-template-columns:1fr 20px 1fr;
+    }
+
+    .tl-left{
+        display:flex;
+    }
+
+    .tl-right{
+        padding-left:16px;
+    }
+
+    .projects-grid{
+        grid-template-columns:1fr;
+    }
+}
+       
+    @media (max-width: 768px){
+
+    .nav-links{
+        display:none !important;
+    }
+
+    .nav-inner{
+        justify-content:center;
+    }
+
+    .logo{
+        font-size:2rem;
+    }
+
+     .fab{
+        left:15px;
+        bottom:15px;
+    }
+
+    .chatbot-wrap{
+        right:15px;
+        bottom:15px;
+    }
+
+    .chatbot-toggle{
+        margin-top:0;
+    }
+
+    .fab-btn,
+    .chatbot-toggle{
+        width:56px;
+        height:56px;
+        border-radius:50%;
+    }
+
+    /* HERO */
+    .hero{
+        padding-top:110px;
+        padding-bottom:60px;
+    }
+
+    .hero h1{
+        font-size:2.2rem;
+        line-height:1.15;
+    }
+
+    .hero-subtitle{
+        font-size:1rem;
+    }
+
+    .hero-links{
+        flex-direction:column;
+        align-items:center;
+        gap:12px;
+    }
+
+    .hero-divider{
+        display:none;
+    }
+
+    /* SECTIONS */
+    .section{
+        padding:60px 0;
+    }
+
+    /* GRIDS */
+    .skills-grid,
+    .projects-grid,
+    .edu-grid,
+    .contact-grid{
+        grid-template-columns:1fr;
+    }
+
+    /* TIMELINE */
+    .timeline::before{
+        left:18px;
+    }
+
+    .timeline-item{
+        padding-left:50px;
+    }
+
+    .timeline-dot{
+        left:8px;
+    }
+
+    /* CERTIFICATIONS */
+    .cert-grid{
+        grid-template-columns:1fr;
+    }
+
+    /* FOOTER */
+    .footer-inner{
+        flex-direction:column;
+        gap:15px;
+        text-align:center;
+    }
+
+    /* CHATBOT */
+    .chatbot-wrap{
+        right:10px;
+        bottom:10px;
+    }
+
+    .chatbot-window{
+        width:95vw;
+        max-width:95vw;
+        height:75vh;
+        max-height:650px;
+    }
+
+    .chatbot-toggle{
+        width:50px;
+        height:50px;
+    }
+
+    .fa-linkedin{
+    display:none;
+}
+
+img{
+    max-width:100%;
+    height:auto;
+}
+
+.nav-links{
+    list-style:none !important;
+}
+
+.nav-links li{
+    list-style:none !important;
+    padding-left:0 !important;
+}
+
+.nav-links li::before,
+.nav-links li::after{
+    content:none !important;
+    display:none !important;
+}
+
+.fab{
+        bottom:15px !important;
+        left:15px !important;
+    }
+
+    .chatbot-wrap{
+        bottom:15px !important;
+        right:15px !important;
+    }
+
+}
+
     </style>
 </head>
 <body>
@@ -343,9 +589,9 @@
             <a href="#contact" class="btn btn-outline"><i class="fas fa-paper-plane"></i> Contact Me</a>
         </div>
         <div class="hero-links">
-            <a href="https://github.com/suchismittaa" class="hero-link-item" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+            <a href="https://github.com/suchismittaa" class="hero-link-item" target="_blank">GitHub</a>
             <div class="hero-divider"></div>
-            <a href="https://www.linkedin.com/in/suchismita-sarkar-09ba2430b/" class="hero-link-item" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+            <a href="https://www.linkedin.com/in/suchismita-sarkar-09ba2430b/" class="hero-link-item" target="_blank">LinkedIn</a>
             <div class="hero-divider"></div>
             <a href="mailto:ssarkar4483@gmail.com" class="hero-link-item"><i class="fas fa-envelope"></i> ssarkar4483@gmail.com</a>
         </div>
@@ -521,10 +767,14 @@
     </div>
 </section>
 
-<!-- CONTACT — FIX 2: no phone, proper icon alignment -->
+<!-- CONTACT -->
 <section id="contact" class="section contact-bg">
     <div class="container">
-        <div class="section-header"><div class="section-eyebrow">Get In Touch</div><h2 class="section-title">Contact <span class="dim">Me</span></h2><p class="section-subtitle">Open to internships, collaborations, and data roles. Let's build something together.</p></div>
+        <div class="section-header">
+            <div class="section-eyebrow">Get In Touch</div>
+            <h2 class="section-title">Contact <span class="dim">Me</span></h2>
+            <p class="section-subtitle">Open to internships, collaborations, and data roles. Let's build something together.</p>
+        </div>
         <div class="contact-grid">
             <div class="contact-info-card reveal">
                 <div class="contact-info-title">Contact Information</div>
@@ -544,13 +794,43 @@
                     </div>
                 </div>
             </div>
+
             <div class="contact-form-card reveal">
                 <div class="contact-form-title">Send Me a Message</div>
+
+                <!-- SUCCESS STATE -->
+                <div id="formSuccess" style="display:none;text-align:center;padding:36px 20px;">
+                    <div style="width:60px;height:60px;background:rgba(0,229,195,0.1);border:1px solid rgba(0,229,195,0.3);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 18px;font-size:1.6rem;color:var(--accent3);">
+                        <i class="fas fa-check"></i>
+                    </div>
+                    <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:1.15rem;color:var(--text);margin-bottom:10px;">Message Sent! 🎉</div>
+                    <div style="font-size:0.88rem;color:var(--text3);margin-bottom:22px;line-height:1.6;">Thanks for reaching out — Suchismita will get back to you soon.</div>
+                    <button onclick="resetForm()" style="background:rgba(0,229,195,0.08);border:1px solid rgba(0,229,195,0.25);color:var(--accent3);padding:8px 20px;border-radius:9px;font-size:0.85rem;cursor:pointer;font-family:'DM Sans',sans-serif;">Send Another</button>
+                </div>
+
+                <!-- ERROR BANNER -->
+                <div id="formError" style="display:none;background:rgba(255,90,106,0.07);border:1px solid rgba(255,90,106,0.22);border-radius:10px;padding:12px 16px;margin-bottom:16px;font-size:0.86rem;color:#FF5A6A;align-items:center;gap:9px;">
+                    <i class="fas fa-exclamation-circle"></i>
+                    Something went wrong. Email directly: <a href="mailto:ssarkar4483@gmail.com" style="color:#FF5A6A;text-decoration:underline;">ssarkar4483@gmail.com</a>
+                </div>
+
                 <form id="contactForm">
-                    <div class="form-group"><label>Name</label><input type="text" id="name" required></div>
-                    <div class="form-group"><label>Email</label><input type="email" id="email" required></div>
-                    <div class="form-group"><label>Message</label><textarea id="message" required></textarea></div>
-                    <button type="submit" class="btn btn-primary"><i class="fas fa-paper-plane"></i> Send Message</button>
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input type="text" id="cf-name" name="name" placeholder="Your name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" id="cf-email" name="email" placeholder="your@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Message</label>
+                        <textarea id="cf-message" name="message" placeholder="Write your message here…" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" id="submitBtn" style="min-width:170px;">
+                        <i class="fas fa-paper-plane" id="submitIcon"></i>
+                        <span id="submitText">Send Message</span>
+                    </button>
                 </form>
             </div>
         </div>
@@ -611,9 +891,56 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 let counted=false;
 const statsObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting&&!counted){counted=true;document.querySelectorAll('.stat-num').forEach(el=>{const target=+el.dataset.count,plus=el.dataset.plus==='true';let cur=0;const step=Math.max(1,Math.ceil(target/40));const t=setInterval(()=>{cur=Math.min(cur+step,target);el.textContent=cur+(plus&&cur===target?'+':'');if(cur>=target)clearInterval(t);},30);});}});},{threshold:0.3});
 const ss=document.querySelector('.stats-bg');if(ss)statsObs.observe(ss);
-// CONTACT FORM
-document.getElementById('contactForm').addEventListener('submit',function(e){e.preventDefault();const n=document.getElementById('name').value,em=document.getElementById('email').value,m=document.getElementById('message').value;window.location.href=`mailto:ssarkar4483@gmail.com?subject=Message from ${n}&body=${encodeURIComponent(m)}%0A%0AFrom: ${n}%0AEmail: ${em}`;this.reset();});
+// CONTACT FORM — Formspree backend
+const FORMSPREE_ENDPOINT = 'https://formspree.io/f/maqkzyyp';
 
+function resetForm(){
+    document.getElementById('formSuccess').style.display='none';
+    document.getElementById('formError').style.display='none';
+    document.getElementById('contactForm').style.display='block';
+    document.getElementById('contactForm').reset();
+    document.getElementById('submitBtn').disabled=false;
+    document.getElementById('submitIcon').className='fas fa-paper-plane';
+    document.getElementById('submitText').textContent='Send Message';
+}
+
+document.getElementById('contactForm').addEventListener('submit', async function(e){
+    e.preventDefault();
+    const name    = document.getElementById('cf-name').value.trim();
+    const email   = document.getElementById('cf-email').value.trim();
+    const message = document.getElementById('cf-message').value.trim();
+    if(!name || !email || !message) return;
+
+    // Loading state
+    const btn = document.getElementById('submitBtn');
+    btn.disabled = true;
+    document.getElementById('submitIcon').className  = 'fas fa-spinner fa-spin';
+    document.getElementById('submitText').textContent = 'Sending…';
+    document.getElementById('formError').style.display = 'none';
+
+    try {
+        const res = await fetch(FORMSPREE_ENDPOINT, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            body: JSON.stringify({ name, email, message, _subject: `Portfolio message from ${name}` })
+        });
+        if(res.ok){
+            document.getElementById('contactForm').style.display = 'none';
+            document.getElementById('formSuccess').style.display = 'block';
+        } else {
+            throw new Error('Server error');
+        }
+    } catch(err){
+        btn.disabled = false;
+        document.getElementById('submitIcon').className  = 'fas fa-paper-plane';
+        document.getElementById('submitText').textContent = 'Send Message';
+        document.getElementById('formError').style.display = 'flex';
+        // Fallback: open mailto after 1.5s
+        setTimeout(()=>{
+            window.location.href = `mailto:ssarkar4483@gmail.com?subject=Portfolio message from ${encodeURIComponent(name)}&body=${encodeURIComponent(message)}%0A%0AFrom: ${encodeURIComponent(name)}%0AEmail: ${encodeURIComponent(email)}`;
+        }, 1500);
+    }
+});
 // ========================= CHATBOT =========================
 // FIX 1: Full role-fit engine + personal Q&A
 const skills={programming:["Python","C++","SQL"],analytics:["EDA","Statistical Analysis","Power BI","Tableau","Data Wrangling"],ml:["ML Algorithms","Scikit-learn","Regression","Classification","Model Evaluation","Feature Engineering","Neural Networks"],tools:["Jupyter","Excel","Google Sheets","VS Code","Streamlit","AWS basics"],soft:["Communication","Teamwork","Problem Solving","Leadership","Presentation"]};
@@ -670,6 +997,26 @@ function welcome(){
     ]);
 }
 
+async function askAI(message){
+
+    const response = await fetch(
+        "/.netlify/functions/chat",
+        {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                message
+            })
+        }
+    );
+
+    const data = await response.json();
+
+    return data.reply;
+}
+
 function process(msg){
     const lm=msg.toLowerCase();
     // greet/bye
@@ -708,8 +1055,24 @@ function process(msg){
         if(lm.includes('model')||lm.includes('algorithm')){addBot(`<strong>${p.name}</strong><br>Models: ${p.models}<br><a href="${p.link}" target="_blank">🔗 GitHub</a>`);return;}
         if(lm.includes('link')||lm.includes('repo')){window.open(p.link,'_blank');addBot('Opening GitHub repo 🔗');return;}
     }
-    addBot(`I can help with <strong>role fit</strong>, <strong>skills</strong>, <strong>projects</strong>, <strong>personal questions</strong>, and more. Try asking:<br>• "What are her preferred job roles?"<br>• "Check role fit for data analyst"<br>• "Where does she see herself in 5 years?"`);
-    addOpts([{text:'🎯 Check Role Fit',a:'rolefit'},{text:'Preferred Job Roles',a:'jobRoles'},{text:'View Skills',a:'skills'},{text:'See Projects',a:'projects'}]);
+    (async () => {
+
+    try {
+
+        const reply = await askAI(msg);
+
+        addBot(reply);
+
+    }
+    catch(error){
+
+        addBot(
+            "Sorry, AI service is unavailable right now."
+        );
+
+    }
+
+})();
 }
 
 // ---- FIX 1: Smart Role Fit Engine ----
@@ -839,7 +1202,7 @@ function showCerts(){
 }
 function showEdu(){
     state.lastTopic='edu';
-    addBot(`<strong>Education 🎓</strong><br><br><strong>B.Tech — Information Technology</strong><br>KIIT, Bhubaneswar | 2022–Present | CGPA: 7.8<br><br><strong>Senior Secondary (CBSE)</strong><br>Kalyani Public School, 2022 | 69 Percentile<br><br><strong>Secondary (CBSE)</strong><br>Kalyani Public School, 2020 | 89.4 Percentile`);
+    addBot(`<strong>Education 🎓</strong><br><br><strong>B.Tech — Information Technology</strong><br>KIIT, Bhubaneswar | 2022–Present | CGPA: 8.11<br><br><strong>Senior Secondary (CBSE)</strong><br>Kalyani Public School, 2022 | 69 Percentile<br><br><strong>Secondary (CBSE)</strong><br>Kalyani Public School, 2020 | 89.4 Percentile`);
     addOpts([{text:'View Skills',a:'skills'},{text:'See Projects',a:'projects'}]);
 }
 function showResume(){
@@ -851,5 +1214,8 @@ function showContact(){
     addBot(`<strong>Contact Suchismita 📬</strong><br><br>📧 <a href="mailto:ssarkar4483@gmail.com">ssarkar4483@gmail.com</a><br>📍 West Bengal, India<br><br><a href="https://www.linkedin.com/in/suchismita-sarkar-09ba2430b/" target="_blank">LinkedIn</a> &nbsp;·&nbsp; <a href="https://github.com/suchismittaa" target="_blank">GitHub</a>`);
 }
 </script>
+
+<script src="chat.js"></script>
+
 </body>
 </html>
