@@ -1,0 +1,3666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suchismita Sarkar | Data & AI Portfolio</title>
+    <meta name="description" content="Detail-oriented and analytically driven professional skilled in Python, SQL, and data analysis">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22 fill=%22#3A86FF%22>SS</text></svg>">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Your existing styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-bg: #0D1117;
+            --secondary-bg: #161B22;
+            --card-bg: #1F2937;
+            --primary-text: #F8FAFC;
+            --secondary-text: #C9D1D9;
+            --muted-text: #94A3B8;
+            --primary-accent: #3A86FF;
+            --secondary-accent: #A855F7;
+            --border-color: #374151;
+            --chatbot-bg: #1F2937;
+            --chatbot-header: linear-gradient(135deg, var(--primary-accent), var(--secondary-accent));
+            --user-message: #3A86FF;
+            --bot-message: #2D3748;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--primary-bg);
+            color: var(--primary-text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Progress Bar */
+        .progress-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background-color: rgba(255, 255, 255, 0.1);
+            z-index: 10000;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-accent), var(--secondary-accent));
+            width: 0;
+            transition: width 0.2s ease;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(13, 17, 23, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 15px 0;
+            border-bottom: 1px solid var(--border-color);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--primary-accent);
+            text-decoration: none;
+            text-shadow: 0 0 10px rgba(58, 134, 255, 0.5);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: var(--secondary-text);
+            text-decoration: none;
+            transition: all 0.3s;
+            font-weight: 500;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-accent);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-accent);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 140px 0 80px;
+            text-align: center;
+            position: relative;
+            background: linear-gradient(135deg, var(--primary-bg) 0%, var(--secondary-bg) 100%);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 50%, rgba(58, 134, 255, 0.1) 0%, transparent 50%);
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .profile-img-container {
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            margin: 0 auto 30px;
+            border: 4px solid var(--primary-accent);
+            overflow: hidden;
+            box-shadow: 0 0 30px rgba(58, 134, 255, 0.6);
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            background-color: var(--card-bg);
+        }
+
+        .profile-img-container:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 40px rgba(58, 134, 255, 0.8);
+        }
+
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            background: linear-gradient(90deg, var(--primary-accent), var(--secondary-accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 10px rgba(58, 134, 255, 0.5); }
+            to { text-shadow: 0 0 20px rgba(58, 134, 255, 0.8); }
+        }
+
+        .tagline {
+            font-size: 1.4rem;
+            color: var(--secondary-text);
+            margin-bottom: 25px;
+            font-weight: 300;
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            color: var(--muted-text);
+            margin-bottom: 35px;
+            line-height: 1.8;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 14px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-accent), #2563eb);
+            color: white;
+            box-shadow: 0 4px 15px rgba(58, 134, 255, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(58, 134, 255, 0.6);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary-accent);
+            border: 2px solid var(--primary-accent);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary-accent);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(58, 134, 255, 0.4);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.8rem;
+            margin-bottom: 60px;
+            color: var(--primary-text);
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-accent), var(--secondary-accent));
+            border-radius: 2px;
+        }
+
+        /* Stats Section */
+        .stats {
+            background-color: var(--secondary-bg);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, var(--card-bg), #2a3441);
+            padding: 40px 30px;
+            border-radius: 15px;
+            text-align: center;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+            border-color: var(--primary-accent);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--primary-accent);
+            margin-bottom: 10px;
+            text-shadow: 0 0 10px rgba(58, 134, 255, 0.5);
+        }
+
+        .stat-label {
+            color: var(--secondary-text);
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        .stat-number-plus::after {
+    content: "+";
+    margin-left: 3px;
+}
+
+
+        /* Education */
+        .education {
+            background-color: var(--secondary-bg);
+        }
+
+        .education-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .education-card {
+            background: linear-gradient(135deg, var(--card-bg), #2a3441);
+            padding: 35px;
+            border-radius: 15px;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .education-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-accent), var(--secondary-accent));
+        }
+
+        .education-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+            border-color: var(--primary-accent);
+        }
+
+        .education-card h3 {
+            color: var(--primary-accent);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .education-card .school {
+            color: var(--secondary-text);
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+
+        .education-card .date {
+            color: var(--muted-text);
+            font-size: 0.95rem;
+            margin-bottom: 5px;
+        }
+
+        .education-card .location {
+            color: var(--muted-text);
+            font-size: 0.95rem;
+            margin-bottom: 10px;
+        }
+
+        .education-card .cgpa,
+        .education-card .percentile {
+            color: var(--primary-accent);
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+
+        /* Skills Section */
+        .skills {
+            background-color: var(--primary-bg);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .skill-card {
+            background: linear-gradient(135deg, var(--card-bg), #2a3441);
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+            border-color: var(--primary-accent);
+        }
+
+        .skill-card h3 {
+            color: var(--primary-accent);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.2rem;
+        }
+
+        .skill-list {
+            list-style: none;
+        }
+
+        .skill-list li {
+            padding: 8px 0;
+            color: var(--secondary-text);
+            position: relative;
+            padding-left: 25px;
+            transition: all 0.3s;
+        }
+
+        .skill-list li:hover {
+            color: var(--primary-accent);
+            transform: translateX(5px);
+        }
+
+        .skill-list li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--primary-accent);
+            font-size: 1.2rem;
+        }
+
+        /* Timeline */
+
+        /* Timeline */
+.timeline {
+    background-color: var(--primary-bg);
+}
+
+.timeline-container {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/* CENTRAL LINE – stays behind everything */
+.timeline-container::after {
+    content: '';
+    position: absolute;
+    width: 3px;
+    background: linear-gradient(to bottom, var(--primary-accent), var(--secondary-accent));
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    margin-left: -1.5px;
+    z-index: 0;          /* line at the very back */
+}
+
+.timeline-item {
+    padding: 20px 40px;
+    position: relative;
+    background-color: inherit;
+    width: 50%;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 0.6s forwards;
+    z-index: 1;          /* above the line */
+}
+
+.timeline-item:nth-child(1) { animation-delay: 0.1s; }
+.timeline-item:nth-child(2) { animation-delay: 0.2s; }
+.timeline-item:nth-child(3) { animation-delay: 0.3s; }
+.timeline-item:nth-child(4) { animation-delay: 0.4s; }
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* DOTS – solid blue again, above the line */
+.timeline-item::after {
+    content: '';
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    right: -12.5px;
+    background-color: var(--primary-accent);  /* solid blue fill */
+    border: 4px solid var(--primary-bg);      /* outer ring */
+    top: 22px;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(58, 134, 255, 0.5);
+    z-index: 2;                               /* ABOVE the line */
+}
+
+.left {
+    left: 0;
+}
+
+.right {
+    left: 50%;
+}
+
+.left::before {
+    content: " ";
+    height: 0;
+    position: absolute;
+    top: 22px;
+    width: 0;
+    z-index: 1;
+    right: 30px;
+    border: medium solid var(--border-color);
+    border-width: 10px 0 10px 10px;
+    border-color: transparent transparent transparent var(--border-color);
+}
+
+.right::before {
+    content: " ";
+    height: 0;
+    position: absolute;
+    top: 22px;
+    width: 0;
+    z-index: 1;
+    left: 30px;
+    border: medium solid var(--border-color);
+    border-width: 10px 10px 10px 0;
+    border-color: transparent var(--border-color) transparent transparent;
+}
+
+.right::after {
+    left: -12.5px;
+}
+
+.timeline-content {
+    padding: 25px 30px;
+    background: linear-gradient(135deg, var(--card-bg), #2a3441);
+    position: relative;
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+    transition: all 0.3s;
+}
+
+.timeline-content:hover {
+    transform: scale(1.02);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    border-color: var(--primary-accent);
+}
+
+.timeline-content h3 {
+    color: var(--primary-accent);
+    margin-bottom: 10px;
+    font-size: 1.3rem;
+}
+
+.timeline-content p {
+    color: var(--secondary-text);
+    line-height: 1.6;
+}
+
+ 
+
+        /* Education */
+        .education {
+            background-color: var(--secondary-bg);
+        }
+
+        .education-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .education-card {
+            background: linear-gradient(135deg, var(--card-bg), #2a3441);
+            padding: 35px;
+            border-radius: 15px;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .education-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-accent), var(--secondary-accent));
+        }
+
+        .education-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+            border-color: var(--primary-accent);
+        }
+
+        .education-card h3 {
+            color: var(--primary-accent);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .education-card .school {
+            color: var(--secondary-text);
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+
+        .education-card .date {
+            color: var(--muted-text);
+            font-size: 0.95rem;
+            margin-bottom: 5px;
+        }
+
+        .education-card .location {
+            color: var(--muted-text);
+            font-size: 0.95rem;
+            margin-bottom: 10px;
+        }
+
+        .education-card .cgpa,
+        .education-card .percentile {
+            color: var(--primary-accent);
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        /* Projects */
+        .projects {
+            background-color: var(--secondary-bg);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background: linear-gradient(135deg, var(--card-bg), #2a3441);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+            border-color: var(--primary-accent);
+        }
+
+        .project-content {
+            padding: 30px;
+        }
+
+        .project-title {
+            color: var(--primary-accent);
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+            font-weight: 600;
+        }
+
+        .project-description {
+            color: var(--secondary-text);
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .project-details {
+            margin-bottom: 25px;
+        }
+
+        .project-details h4 {
+            color: var(--secondary-text);
+            margin-bottom: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .project-details p {
+            color: var(--muted-text);
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+
+        .tech-badge {
+            background: linear-gradient(135deg, rgba(58, 134, 255, 0.2), rgba(168, 85, 247, 0.2));
+            color: var(--primary-accent);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            border: 1px solid rgba(58, 134, 255, 0.3);
+            transition: all 0.3s;
+        }
+
+        .tech-badge:hover {
+            background: var(--primary-accent);
+            color: white;
+            transform: scale(1.05);
+        }
+
+        .project-buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        /* Experience Section */
+        .experience {
+            background-color: var(--primary-bg);
+        }
+
+        .experience-card {
+            background: linear-gradient(135deg, var(--card-bg), #2a3441);
+            padding: 35px;
+            border-radius: 15px;
+            border: 1px solid var(--border-color);
+            margin-bottom: 30px;
+            transition: all 0.3s;
+        }
+
+        .experience-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+            border-color: var(--primary-accent);
+        }
+
+        .experience-card h3 {
+            color: var(--primary-accent);
+            margin-bottom: 10px;
+            font-size: 1.4rem;
+        }
+
+        .experience-card .company {
+            color: var(--secondary-text);
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+
+        .experience-card .date {
+            color: var(--muted-text);
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+        }
+
+        .experience-card ul {
+            list-style: none;
+        }
+
+        .experience-card li {
+            padding: 8px 0;
+            color: var(--secondary-text);
+            position: relative;
+            padding-left: 25px;
+            line-height: 1.6;
+        }
+
+        .experience-card li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--primary-accent);
+            font-size: 1.5rem;
+        }
+
+        .certificates-title {
+            text-align: center;
+            font-size: 2rem;
+            margin: 50px 0 30px;
+            color: var(--primary-text);
+        }
+
+        .certificates-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .certificate-card {
+            background: linear-gradient(135deg, var(--card-bg), #2a3441);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .certificate-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(58, 134, 255, 0.5);
+            border-color: var(--primary-accent);
+        }
+
+        .certificate-img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            background: linear-gradient(135deg, rgba(58, 134, 255, 0.1), rgba(168, 85, 247, 0.1));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: var(--primary-accent);
+        }
+
+        .certificate-info {
+            padding: 20px;
+        }
+
+        .certificate-title {
+            color: var(--primary-accent);
+            font-size: 1rem;
+            margin-bottom: 8px;
+            font-weight: 600;
+            line-height: 1.4;
+        }
+
+        .certificate-issuer {
+            color: var(--muted-text);
+            font-size: 0.9rem;
+        }
+
+        .certificate-link {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        /* Research Section */
+        .research {
+            background-color: var(--secondary-bg);
+        }
+
+        .research-card {
+            background: linear-gradient(135deg, var(--card-bg), #2a3441);
+            padding: 45px;
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .research-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 6px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--primary-accent), var(--secondary-accent));
+            box-shadow: 0 0 10px rgba(58, 134, 255, 0.5);
+        }
+
+        .research-title {
+            color: var(--primary-accent);
+            margin-bottom: 20px;
+            font-size: 1.6rem;
+            font-weight: 600;
+            line-height: 1.4;
+        }
+
+        .research-conference {
+            color: var(--secondary-text);
+            margin-bottom: 25px;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .research-conference i {
+            color: var(--primary-accent);
+        }
+
+        .research-description {
+            color: var(--secondary-text);
+            margin-bottom: 35px;
+            line-height: 1.7;
+            font-size: 1.05rem;
+        }
+
+        .research-buttons {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        /* Organizations Section */
+        .organizations {
+            background-color: var(--primary-bg);
+        }
+
+        .organization-card {
+            background: linear-gradient(135deg, var(--card-bg), #2a3441);
+            padding: 40px;
+            border-radius: 15px;
+            border: 1px solid var(--border-color);
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .organization-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+            border-color: var(--primary-accent);
+        }
+
+        .organization-card h3 {
+            color: var(--primary-accent);
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .organization-card p {
+            color: var(--secondary-text);
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+
+        /* Contact Section */
+        .contact {
+            background-color: var(--secondary-bg);
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+        }
+
+        .contact-info {
+            background: linear-gradient(135deg, var(--card-bg), #2a3441);
+            padding: 35px;
+            border-radius: 15px;
+            border: 1px solid var(--border-color);
+        }
+
+        .contact-info h3 {
+            color: var(--primary-accent);
+            margin-bottom: 25px;
+            font-size: 1.4rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            color: var(--secondary-text);
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .contact-item:hover {
+            color: var(--primary-accent);
+            transform: translateX(5px);
+        }
+
+        .contact-item i {
+            color: var(--primary-accent);
+            font-size: 1.5rem;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: rgba(58, 134, 255, 0.1);
+            border-radius: 50%;
+            transition: all 0.3s;
+        }
+
+        .contact-item:hover i {
+            background: var(--primary-accent);
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .contact-item span {
+            color: inherit;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .contact-form {
+            background: linear-gradient(135deg, var(--card-bg), #2a3441);
+            padding: 35px;
+            border-radius: 15px;
+            border: 1px solid var(--border-color);
+        }
+
+        .contact-form h3 {
+            color: var(--primary-accent);
+            margin-bottom: 25px;
+            font-size: 1.4rem;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--secondary-text);
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            background-color: var(--primary-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: var(--primary-text);
+            font-family: inherit;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-accent);
+            box-shadow: 0 0 10px rgba(58, 134, 255, 0.3);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        /* Social Links Section */
+        .social-links-section {
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .social-links-section h4 {
+            color: var(--primary-accent);
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+            text-align: center;
+        }
+
+        .social-links-large {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .social-link-large {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            transition: all 0.3s;
+            padding: 20px;
+            border-radius: 15px;
+            background: rgba(58, 134, 255, 0.05);
+            border: 1px solid var(--border-color);
+            min-width: 120px;
+        }
+
+        .social-link-large:hover {
+            background: rgba(58, 134, 255, 0.1);
+            transform: translateY(-5px);
+            border-color: var(--primary-accent);
+        }
+
+        .social-icon-large {
+            font-size: 2.5rem;
+            color: var(--primary-accent);
+            transition: all 0.3s;
+        }
+
+        .social-link-large:hover .social-icon-large {
+            color: var(--primary-accent);
+            transform: scale(1.1);
+        }
+
+        .social-link-text {
+            color: var(--secondary-text);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .social-link-large:hover .social-link-text {
+            color: var(--primary-accent);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-bg);
+            padding: 40px 0;
+            text-align: center;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .footer-social-links {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-bottom: 25px;
+        }
+
+        .footer-social-links a {
+            color: var(--primary-text);
+            font-size: 1.8rem;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(58, 134, 255, 0.08);
+            border: 1px solid rgba(58, 134, 255, 0.3);
+        }
+
+        /* Make footer icons visible */
+       .footer-social-links i {
+           color: var(--primary-accent);   /* bright blue icon */
+           font-size: 1.6rem;
+        }
+
+/* On hover, make the icon white */
+       .footer-social-links a:hover i {
+           color: #ffffff;
+        }
+
+
+        .footer-social-links a:hover {
+            background: rgba(58, 134, 255, 0.1);
+            border-color: var(--primary-accent);
+            color: white;
+            transform: none;
+        }
+
+        .copyright {
+            color: var(--muted-text);
+            font-size: 0.95rem;
+        }
+
+        /* Floating Action Button */
+        .fab {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background: linear-gradient(135deg, var(--primary-accent), #2563eb);
+            color: white;
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(58, 134, 255, 0.4);
+            z-index: 1000;
+            transition: all 0.3s;
+            font-size: 1.3rem;
+        }
+
+        .fab:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(58, 134, 255, 0.6);
+        }
+
+        .fab-menu {
+            position: absolute;
+            bottom: 75px;
+            left: 0;
+            display: none;
+            flex-direction: column;
+            gap: 12px;
+            animation: slideUp 0.3s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fab-menu.active {
+            display: flex;
+        }
+
+        .fab-option {
+            background: linear-gradient(135deg, var(--card-bg), #2a3441);
+            color: var(--primary-text);
+            width: 200px;
+            padding: 12px 18px;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.95rem;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .fab-option:hover {
+            background: var(--primary-accent);
+            color: white;
+            transform: translateX(-5px);
+            box-shadow: 0 5px 15px rgba(58, 134, 255, 0.4);
+        }
+
+        .fab-option i {
+            font-size: 1.1rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .tagline {
+                font-size: 1.2rem;
+            }
+            
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .fab {
+                width: 55px;
+                height: 55px;
+                bottom: 20px;
+                right: 20px;
+            }
+
+            .social-links-large {
+                gap: 15px;
+            }
+
+            .social-link-large {
+                min-width: 100px;
+                padding: 15px;
+            }
+
+            .social-icon-large {
+                font-size: 2rem;
+            }
+
+            .certificates-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+        }
+
+        /* Scroll animations */
+        .scroll-animate {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s, transform 0.6s;
+        }
+
+        .scroll-animate.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+       /* ----------------------------------------------
+   CHATBOT – MAIN CONTAINER
+------------------------------------------------*/
+/* ----------------------------------------------
+   CHATBOT – MAIN CONTAINER
+------------------------------------------------*/
+/* ----------------------------------------------
+   CHATBOT – MAIN CONTAINER
+------------------------------------------------*/
+/* ----------------------------------------------
+   CHATBOT – MAIN CONTAINER
+------------------------------------------------*/
+.chatbot-container {
+    position: fixed;
+    bottom: 20px;   /* 👈 LOWER on the screen */
+    right: 30px;
+    z-index: 1001;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+
+
+/* ----------------------------------------------
+   CHATBOT TOGGLE (Floating Icon)
+------------------------------------------------*/
+.chatbot-toggle {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary-accent), var(--secondary-accent));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(58, 134, 255, 0.4);
+    transition: all 0.3s ease;
+    margin-top: 15px;
+    border: none;
+    font-size: 1.5rem;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 4px 12px rgba(58, 134, 255, 0.4); }
+    50% { box-shadow: 0 4px 20px rgba(58, 134, 255, 0.8); }
+    100% { box-shadow: 0 4px 12px rgba(58, 134, 255, 0.4); }
+}
+
+.chatbot-toggle:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 16px rgba(58, 134, 255, 0.6);
+}
+
+/* ----------------------------------------------
+   CHATBOT WINDOW
+------------------------------------------------*/
+.chatbot-window {
+    width: 380px;
+    height: 500px;
+    background-color: var(--chatbot-bg);
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    margin-bottom: 15px;
+    border: 1px solid var(--border-color);
+    transform: scale(0.95);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.chatbot-window.active {
+    transform: scale(1);
+    opacity: 1;
+    visibility: visible;
+}
+
+/* ----------------------------------------------
+   CHATBOT HEADER + AVATAR
+------------------------------------------------*/
+.chatbot-header {
+    background: var(--chatbot-header);
+    color: white;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Avatar + Name */
+.chatbot-header-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Avatar wrapper */
+.chatbot-header-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid #ffffff33;
+    background: rgba(255, 255, 255, 0.18);
+    flex-shrink: 0;
+}
+
+/* Avatar image */
+.chatbot-header-avatar-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Header title */
+.chatbot-header h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Close Button */
+.chatbot-close {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.chatbot-close:hover {
+    transform: rotate(90deg);
+}
+
+/* ----------------------------------------------
+   CHAT MESSAGES
+------------------------------------------------*/
+.chatbot-messages {
+    flex: 1;
+    padding: 15px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.message {
+    max-width: 80%;
+    padding: 10px 15px;
+    border-radius: 18px;
+    word-wrap: break-word;
+    line-height: 1.4;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.bot-message {
+    background-color: var(--bot-message);
+    color: var(--secondary-text);
+    align-self: flex-start;
+    border-bottom-left-radius: 4px;
+}
+
+.user-message {
+    background-color: var(--user-message);
+    color: white;
+    align-self: flex-end;
+    border-bottom-right-radius: 4px;
+}
+
+/* Typing Indicator */
+.typing-indicator {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 10px 15px;
+    background-color: var(--bot-message);
+    border-radius: 18px;
+    border-bottom-left-radius: 4px;
+    width: fit-content;
+}
+
+.typing-dot {
+    width: 8px;
+    height: 8px;
+    background-color: var(--muted-text);
+    border-radius: 50%;
+    animation: typing 1.4s infinite;
+}
+
+.typing-dot:nth-child(2) { animation-delay: 0.2s; }
+.typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes typing {
+    0%, 60%, 100% { transform: translateY(0); }
+    30% { transform: translateY(-10px); }
+}
+
+/* ----------------------------------------------
+   QUICK REPLY BUTTONS
+------------------------------------------------*/
+.quick-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 5px;
+}
+
+.quick-option {
+    background-color: rgba(58, 134, 255, 0.1);
+    color: var(--primary-accent);
+    border: 1px solid rgba(58, 134, 255, 0.3);
+    padding: 8px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.quick-option:hover {
+    background-color: var(--primary-accent);
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* ----------------------------------------------
+   PROJECT DETAILS BOX
+------------------------------------------------*/
+.project-details {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: rgba(58, 134, 255, 0.05);
+    border-radius: 8px;
+    border-left: 3px solid var(--primary-accent);
+}
+
+.project-details h4 {
+    color: var(--primary-accent);
+    margin-bottom: 8px;
+    font-size: 1rem;
+}
+
+.project-details p {
+    color: var(--secondary-text);
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+}
+
+.project-details .tech {
+    color: var(--muted-text);
+    font-weight: 500;
+    margin-top: 8px;
+    font-size: 0.85rem;
+}
+
+/* ----------------------------------------------
+   INPUT AREA
+------------------------------------------------*/
+.chatbot-input-container {
+    padding: 15px;
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    gap: 10px;
+}
+
+.chatbot-input {
+    flex: 1;
+    padding: 10px 15px;
+    background-color: var(--primary-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 25px;
+    color: var(--primary-text);
+    font-size: 0.9rem;
+}
+
+.chatbot-input:focus {
+    border-color: var(--primary-accent);
+}
+
+.chatbot-send {
+    background: linear-gradient(135deg, var(--primary-accent), var(--secondary-accent));
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.chatbot-send:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(58, 134, 255, 0.4);
+}
+
+/* ----------------------------------------------
+   PRIVACY NOTE
+------------------------------------------------*/
+.privacy-note {
+    font-size: 0.75rem;
+    color: var(--muted-text);
+    margin-top: 5px;
+    font-style: italic;
+}
+
+/* ----------------------------------------------
+   RESPONSIVE – MOBILE FIXES
+------------------------------------------------*/
+@media (max-width: 480px) {
+    .chatbot-window {
+        width: calc(100vw - 40px);
+        height: 450px;
+        right: -10px;
+    }
+    
+    .chatbot-container {
+        right: 20px;
+        bottom: 90px;
+    }
+}
+
+/* add to your existing styles (inside <style>) */
+.chatbot-window {
+    /* keep your existing rules */
+    pointer-events: none;         /* don't intercept mouse events when hidden */
+}
+
+.chatbot-window.active {
+    pointer-events: auto;         /* allow interaction only when visible/active */
+}
+
+.certificate-card {
+    position: relative;   /* ensure z-index works predictably */
+    z-index: 0;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, z-index 0s; /* smooth */
+}
+
+.certificate-card:hover {
+    z-index: 1100;        /* > chatbot-container (1001) so the glow appears on top */
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(58,134,255,0.5); /* whatever glow you already use */
+}
+
+
+    </style>
+</head>
+<body>
+    <!-- Progress Bar -->
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="#home" class="logo">SS</a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">Highlights</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#mytechjourney">Tech Stack</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#research">Research</a></li>
+                <li><a href="#organizations">Organizations</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="profile-img-container">
+                <img src="portfolioimage.jpg" alt="Profile" class="profile-img">
+            </div>
+            <h1>Suchismita Sarkar</h1>
+            <p class="tagline">Transforming Ideas Into Intelligent Systems | AI, Data & Automation Enthusiast</p>
+            <p class="hero-description">
+                A curious and tech-driven problem solver passionate about building intelligent solutions using Python, SQL, machine learning, and modern analytics. Experienced in data engineering, automation, model development, and creating end-to-end solutions using tools like Power BI, Tableau, and Excel.
+            <div class="hero-buttons">
+                <a href="https://drive.google.com/drive/folders/1DH27iF8aXfaKUIVoBWw6ZntPLQNkXhl7" class="btn btn-primary" target="_blank">
+                    <i class="fas fa-download"></i> Download Resume
+                </a>
+                <a href="#contact" class="btn btn-secondary">
+                    <i class="fas fa-envelope"></i> Contact Me
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section id="about" class="stats section">
+        <div class="container">
+            <h2 class="section-title">Work & Learning Highlights</h2>
+            <div class="stats-grid">
+                <div class="stat-card scroll-animate">
+                    <div class="stat-number" data-count="5">0</div>
+                    <div class="stat-label">Major Projects Completed</div>
+                </div>
+                <div class="stat-card scroll-animate">
+                    <div class="stat-number stat-number-plus" data-count="10">0</div>
+                    <div class="stat-label">Certifications</div>
+                </div>
+                <div class="stat-card scroll-animate">
+                    <div class="stat-number" data-count="1">0</div>
+                    <div class="stat-label">Research Paper Published</div>
+                </div>
+                <div class="stat-card scroll-animate">
+                    <div class="stat-number stat-number-plus" data-count="10">0</div>
+                    <div class="stat-label">Analytical Tools Mastered</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+     <!-- Education Section -->
+    <section id="education" class="education section">
+        <div class="container">
+            <h2 class="section-title">Education</h2>
+            <div class="education-grid">
+                <div class="education-card scroll-animate">
+                    <h3>Bachelor of Technology in Information Technology</h3>
+                    <p class="school">Kalinga Institute of Industrial Technology</p>
+                    <p class="date">2022 – Present</p>
+                    <p class="location">Bhubaneswar, India</p>
+                    <p class="cgpa">CGPA: 7.8</p>
+                </div>
+                <div class="education-card scroll-animate">
+                    <h3>Senior Secondary (CBSE)</h3>
+                    <p class="school">Kalyani Public School</p>
+                    <p class="date">2022</p>
+                    <p class="location">Barasat, India</p>
+                    <p class="percentile">Percentile: 69%</p>
+                </div>
+                <div class="education-card scroll-animate">
+                    <h3>Secondary (CBSE)</h3>
+                    <p class="school">Kayani Public School</p>
+                    <p class="date">2020</p>
+                    <p class="location">Barasat, India</p>
+                    <p class="percentile">Percentile: 89.4%</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills section">
+        <div class="container">
+            <h2 class="section-title">Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-card scroll-animate">
+                    <h3><i class="fas fa-code"></i> Programming</h3>
+                    <ul class="skill-list">
+                        <li>Python</li>
+                        <li>C++</li>
+                        <li>SQL</li>
+                    </ul>
+                </div>
+                <div class="skill-card scroll-animate">
+                    <h3><i class="fas fa-chart-line"></i> Data Analytics</h3>
+                    <ul class="skill-list">
+                        <li>Data wrangling</li>
+                        <li>Statistical analysis</li>
+                        <li>Exploratory Data Analysis (EDA)</li>
+                        <li>Power BI</li>
+                        <li>Tableau</li>
+                    </ul>
+                </div>
+                <div class="skill-card scroll-animate">
+                    <h3><i class="fas fa-tools"></i> Tools</h3>
+                    <ul class="skill-list">
+                        <li>Jupyter Notebook</li>
+                        <li>Google Sheets</li>
+                        <li>Excel</li>
+                        <li>VS Code</li>
+                        <li>AI Tools</li>
+                    </ul>
+                </div>
+                <div class="skill-card scroll-animate">
+                    <h3><i class="fas fa-database"></i>Machine Learning & AI</h3>
+                    <ul class="skill-list">
+                        <li>ML Algorithms</li>
+                        <li>Scikit-learn</li>
+                        <li>Model Training & Evaluation</li>
+                        <li>Regression / Classification</li>
+                        <li>Basic Neural Networks</li>
+                    </ul>
+                </div>
+                <div class="skill-card scroll-animate">
+                    <h3><i class="fas fa-laptop-code"></i> Core CS Skills</h3>
+                    <ul class="skill-list">
+                        <li>Mobile Computing</li>
+                        <li>SDLC & Agile Methodologies</li>
+                        <li>AWS</li>
+                        <li>DBMS</li>
+                        <li>Streamlit Cloud</li>
+                        
+                    </ul>
+                </div>
+                <div class="skill-card scroll-animate">
+                    <h3><i class="fas fa-users"></i> Soft Skills</h3>
+                    <ul class="skill-list">
+                        <li>Communication</li>
+                        <li>Team Collaboration</li>
+                        <li>Problem-Solving</li>
+                        <li>Leadership</li>
+                        <li>Presentation</li>
+                        <li>Strategic Thinking</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline Section -->
+    <section id="mytechjourney" class="timeline section">
+        <div class="container">
+            <h2 class="section-title">My Tech Journey</h2>
+            <div class="timeline-container">
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <h3>2022</h3>
+                        <p>Started learning Python and foundational programming concepts at KIIT</p>
+                    </div>
+                </div>
+                <div class="timeline-item right">
+                    <div class="timeline-content">
+                        <h3>2023</h3>
+                        <p>Mastered SQL and database management systems (MySQL, PostgreSQL, SQLite)</p>
+                    </div>
+                </div>
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <h3>2024</h3>
+                        <p>Completed multiple certifications in Data Science, AI, and Cloud Technologies</p>
+                    </div>
+                </div>
+                <div class="timeline-item right">
+                    <div class="timeline-content">
+                        <h3>2025</h3>
+                        <p>Published research paper and completed major ML projects with high accuracy</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects section">
+        <div class="container">
+            <h2 class="section-title">Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card scroll-animate">
+                    <div class="project-content">
+                        <h3 class="project-title">OTT Consumer Segmentation Analysis</h3>
+                        <p class="project-description">Implemented Random Forest, SVM and KNN on 1000+ user records to segment consumers by watch time, genre preference, and device usage.</p>
+                        <div class="project-details">
+                            <h4>Problem:</h4>
+                            <p>Need to segment OTT platform users for personalized recommendations and targeted marketing.</p>
+                            <h4>Approach:</h4>
+                            <p>Applied machine learning algorithms to analyze user behavior patterns and preferences.</p>
+                            <h4>Result:</h4>
+                            <p>Achieved 94% accuracy with Random Forest, uncovering 3 key user segments and enabling personalized recommendations and targeted marketing strategies.</p>
+                        </div>
+                        <div class="tech-stack">
+                            <span class="tech-badge">Python</span>
+                            <span class="tech-badge">Random Forest</span>
+                            <span class="tech-badge">SVM</span>
+                            <span class="tech-badge">KNN</span>
+                        </div>
+                        <div class="project-buttons">
+                            <a href="https://github.com/suchismittaa/OTT-Consumer-Segmentation" class="btn btn-primary" target="_blank">View Details</a>
+                            <a href="#" class="btn btn-secondary">View Report</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card scroll-animate">
+                    <div class="project-content">
+                        <h3 class="project-title">Predicting Mortality of Heart Failure Patients</h3>
+                        <p class="project-description">Developed a machine learning model to predict mortality risk in heart failure patients using clinical data.</p>
+                        <div class="project-details">
+                            <h4>Problem:</h4>
+                            <p>Early prediction of mortality risk in heart failure patients for timely intervention.</p>
+                            <h4>Approach:</h4>
+                            <p>Used Random Forest, XGBoost, and Logistic Regression on 12000+ patient records with clinical data including age, ejection fraction, serum creatinine, and blood pressure.</p>
+                            <h4>Result:</h4>
+                            <p>Achieved 97% accuracy through feature selection and evaluation, providing insights for early intervention and patient care.</p>
+                        </div>
+                        <div class="tech-stack">
+                            <span class="tech-badge">Python</span>
+                            <span class="tech-badge">Random Forest</span>
+                            <span class="tech-badge">XGBoost</span>
+                            <span class="tech-badge">Logistic Regression</span>
+                        </div>
+                        <div class="project-buttons">
+                            <a href="https://github.com/suchismittaa/Predicting-Heart-Mortality-Rate" class="btn btn-primary" target="_blank">View Details</a>
+                            <a href="#" class="btn btn-secondary">View Report</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card scroll-animate">
+                    <div class="project-content">
+                        <h3 class="project-title">Credit-EDA</h3>
+                        <p class="project-description">Conducted data cleaning, visualization, and exploratory analysis on credit risk datasets using Python.</p>
+                        <div class="project-details">
+                            <h4>Problem:</h4>
+                            <p>Assess customer loan applications by identifying key risk indicators in credit data.</p>
+                            <h4>Approach:</h4>
+                            <p>Performed univariate, bivariate, and multivariate analysis and feature engineering on historical application data.</p>
+                            <h4>Result:</h4>
+                            <p>Identified key risk indicators enabling better risk assessment for lending decisions.</p>
+                        </div>
+                        <div class="tech-stack">
+                            <span class="tech-badge">Python</span>
+                            <span class="tech-badge">Pandas</span>
+                            <span class="tech-badge">Matplotlib</span>
+                            <span class="tech-badge">Seaborn</span>
+                        </div>
+                        <div class="project-buttons">
+                            <a href="https://github.com/suchismittaa/Credit-EDA" class="btn btn-primary" target="_blank">View Details</a>
+                            <a href="#" class="btn btn-secondary">View Report</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card scroll-animate">
+                    <div class="project-content">
+                        <h3 class="project-title">Energy Consumption Prediction</h3>
+                        <p class="project-description">Worked with three large real-world datasets to build a complete predictive analytics pipeline.</p>
+                        <div class="project-details">
+                            <h4>Problem:</h4>
+                            <p>Predict energy consumption patterns to optimize resource allocation and planning.</p>
+                            <h4>Approach:</h4>
+                            <p>Combined consumption data, weather data, and holiday data to train advanced ensemble models including LightGBM, XGBoost, AdaBoost, and CatBoost.</p>
+                            <h4>Result:</h4>
+                            <p>Achieved 91% prediction accuracy with strong generalization, generating meaningful insights on consumption patterns and forecasting trends.</p>
+                        </div>
+                        <div class="tech-stack">
+                            <span class="tech-badge">Python</span>
+                            <span class="tech-badge">LightGBM</span>
+                            <span class="tech-badge">XGBoost</span>
+                            <span class="tech-badge">AdaBoost</span>
+                            <span class="tech-badge">CatBoost</span>
+                        </div>
+                        <div class="project-buttons">
+                            <a href="https://github.com/suchismittaa/Energy-Consumption-Prediction-using-ML" class="btn btn-primary" target="_blank">View Details</a>
+                            <a href="#" class="btn btn-secondary">View Report</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card scroll-animate">
+                    <div class="project-content">
+                        <h3 class="project-title">Cardiovascular Impact of Viral Infection Prediction</h3>
+                        <p class="project-description">Developed a Random Forest-based machine learning model to predict cardiovascular risks in patients with prior viral infections.</p>
+                        <div class="project-details">
+                            <h4>Problem:</h4>
+                            <p>Early prediction of cardiovascular risks in patients with viral infections for timely medical intervention.</p>
+                            <h4>Approach:</h4>
+                            <p>Performed data preprocessing, feature engineering, model evaluation, and optimization to build a reliable, scalable healthcare prediction system.</p>
+                            <h4>Result:</h4>
+                            <p>Achieved high accuracy and early-diagnosis capability, providing valuable insights for healthcare decision-making.</p>
+                        </div>
+                        <div class="tech-stack">
+                            <span class="tech-badge">Python</span>
+                            <span class="tech-badge">Random Forest</span>
+                            <span class="tech-badge">Feature Engineering</span>
+                        </div>
+                        <div class="project-buttons">
+                            <a href="https://github.com/suchismittaa/Cardiovascular-Impact-of-Viral-Infection-Prediction" class="btn btn-primary" target="_blank">View Details</a>
+                            <a href="#" class="btn btn-secondary">View Report</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience & Certifications Section -->
+    <section id="experience" class="experience section">
+        <div class="container">
+            <h2 class="section-title">Experience & Certifications</h2>
+            <div class="experience-card scroll-animate">
+                <h3>Data Science Training</h3>
+                <p class="company">1Stop.AI</p>
+                <p class="date">Jul 2025 – Sep 2025</p>
+                <ul>
+                    <li>Assisted in data preprocessing, feature engineering, and model development using Python and machine learning libraries (Scikit-learn, Pandas, NumPy).</li>
+                    <li>Applied algorithms and optimized model accuracy on real-world mentorship-led projects.</li>
+                </ul>
+            </div>
+            
+            <h3 class="certificates-title">Certifications</h3>
+            <div class="certificates-grid">
+                <div class="certificate-card scroll-animate">
+                    <a href="https://drive.google.com/drive/folders/1ibdz5jQDWErNDwSwVO-WKbCh_M0vJKTf" target="_blank" class="certificate-link"></a>
+                    <div class="certificate-img">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <div class="certificate-info">
+                        <h4 class="certificate-title">Data Science Training</h4>
+                        <p class="certificate-issuer">1Stop.AI</p>
+                    </div>
+                </div>
+                
+                <div class="certificate-card scroll-animate">
+                    <a href="https://drive.google.com/file/d/1iATEVv1wI80KFpnxsrgNrbcqWI7vrScu/view?usp=drive_link" target="_blank" class="certificate-link"></a>
+                    <div class="certificate-img">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <div class="certificate-info">
+                        <h4 class="certificate-title">Business for Good: Fundamentals of Corporate Responsibility</h4>
+                        <p class="certificate-issuer">Coursera</p>
+                    </div>
+                </div>
+                
+                <div class="certificate-card scroll-animate">
+                    <a href="https://drive.google.com/file/d/1QVEp3SKiaMR_VLQ_b-84dIr5lII2M85c/view?usp=drive_link" target="_blank" class="certificate-link"></a>
+                    <div class="certificate-img">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <div class="certificate-info">
+                        <h4 class="certificate-title">Corporate Governance</h4>
+                        <p class="certificate-issuer">Coursera</p>
+                    </div>
+                </div>
+                
+                <div class="certificate-card scroll-animate">
+                    <a href="https://drive.google.com/file/d/141aH0pwwpbGGJhoBO2jFn_u4OziDvR3_/view?usp=drive_link" target="_blank" class="certificate-link"></a>
+                    <div class="certificate-img">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <div class="certificate-info">
+                        <h4 class="certificate-title">Generative AI: Introduction and Applications</h4>
+                        <p class="certificate-issuer">Coursera</p>
+                    </div>
+                </div>
+                
+                <div class="certificate-card scroll-animate">
+                    <a href="https://drive.google.com/file/d/118GrbeirjOWhtsG-t16TsfcsvHptxpTa/view?usp=drive_link" target="_blank" class="certificate-link"></a>
+                    <div class="certificate-img">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <div class="certificate-info">
+                        <h4 class="certificate-title">Ethical Decision Making for Success in Tech Industry</h4>
+                        <p class="certificate-issuer">Coursera</p>
+                    </div>
+                </div>
+                
+                <div class="certificate-card scroll-animate">
+                    <a href="https://drive.google.com/file/d/1K5p622ZUT0izrnbs1kAbU-v_2PpzFVs9/view?usp=drive_link" target="_blank" class="certificate-link"></a>
+                    <div class="certificate-img">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <div class="certificate-info">
+                        <h4 class="certificate-title">Generative AI Prompt Engineering Basics</h4>
+                        <p class="certificate-issuer">Coursera</p>
+                    </div>
+                </div>
+                
+                <div class="certificate-card scroll-animate">
+                    <a href="https://drive.google.com/file/d/1-_xIo4C9u3q5BRFeht3EMxQJ6ALyK9It/view?usp=drive_link" target="_blank" class="certificate-link"></a>
+                    <div class="certificate-img">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <div class="certificate-info">
+                        <h4 class="certificate-title">JAVA for Beginners</h4>
+                        <p class="certificate-issuer">SimpliLearn</p>
+                    </div>
+                </div>
+                
+                <div class="certificate-card scroll-animate">
+                    <a href="https://drive.google.com/file/d/1uAv4-Be1U91bEJtTe2IPd4St25Y5hKhY/view?usp=drive_link" target="_blank" class="certificate-link"></a>
+                    <div class="certificate-img">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <div class="certificate-info">
+                        <h4 class="certificate-title">Getting Started with AWS Services Fundamentals</h4>
+                        <p class="certificate-issuer">Simplilearn</p>
+                    </div>
+                </div>
+                
+                <div class="certificate-card scroll-animate">
+                    <a href="https://drive.google.com/file/d/1ll6GlD7ab3zdZ5qLpb-NHGKRwwToLuCD/view?usp=drive_link" target="_blank" class="certificate-link"></a>
+                    <div class="certificate-img">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <div class="certificate-info">
+                        <h4 class="certificate-title">Quantitative Research Job Simulation</h4>
+                        <p class="certificate-issuer">Forage</p>
+                    </div>
+                </div>
+                
+                <div class="certificate-card scroll-animate">
+                    <a href="https://drive.google.com/file/d/1lgVNekxiObi95byv3sVXD_o_Lpuhi79b/view?usp=drive_link" target="_blank" class="certificate-link"></a>
+                    <div class="certificate-img">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <div class="certificate-info">
+                        <h4 class="certificate-title">Prompt Engineering for ChatGPT</h4>
+                        <p class="certificate-issuer">Coursera</p>
+                    </div>
+                </div>
+                
+
+                <div class="certificate-card scroll-animate">
+                    <a href="https://drive.google.com/file/d/1A6klDmv0OmVKKP4awyDdzb3iGYXxWroB/view?usp=drive_link" target="_blank" class="certificate-link"></a>
+                    <div class="certificate-img">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <div class="certificate-info">
+                        <h4 class="certificate-title">Data Analytics Job Simulation</h4>
+                        <p class="certificate-issuer">Forage</p>
+                    </div>
+                </div>
+
+                <div class="certificate-card scroll-animate">
+                    <a href="https://drive.google.com/file/d/1gd-S0wl_KBClt8LeTWfBlHy577aHtdXq/view?usp=drive_link" target="_blank" class="certificate-link"></a>
+                    <div class="certificate-img">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <div class="certificate-info">
+                        <h4 class="certificate-title">Data Analytics Certification</h4>
+                        <p class="certificate-issuer">TechnoHacks</p>
+                    </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Research Section -->
+    <section id="research" class="research section">
+        <div class="container">
+            <h2 class="section-title">Research Publication</h2>
+            <div class="research-card scroll-animate">
+                <h3 class="research-title">Precise Prediction of Cardiovascular Impact in Patients with Viral Infections Using Intelligent Analytics</h3>
+                <p class="research-conference">
+                    <i class="fas fa-university"></i> International Conference on Computing and Communication Networks (ICCCNet-2025)<br>
+                    Manchester Metropolitan University, UK
+                </p>
+                <p class="research-description">
+                    Co-authored and presented a research paper focusing on predictive modeling for cardiovascular risk assessment in viral infection patients. Contributed to data preprocessing, intelligent analytics, and model evaluation, delivering high-accuracy predictions and clinically relevant insights to support healthcare decision-making.
+                </p>
+                <div class="research-buttons">
+                    <a href="https://drive.google.com/drive/folders/1zVSoE167mwOABLoTQZOCRsZrPwrJL7sD" class="btn btn-primary" target="_blank">
+                        <i class="fas fa-file-pdf"></i> View Paper
+                    </a>
+                    <a href="https://drive.google.com/drive/folders/1FATeHOMeu_fUj_yjX2YVuVX2g0N775rY" class="btn btn-secondary" target="_blank">
+                        <i class="fas fa-certificate"></i> View Certificate
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Organizations Section -->
+    <section id="organizations" class="organizations section">
+        <div class="container">
+            <h2 class="section-title">Organizations</h2>
+            <div class="organization-card scroll-animate">
+                <h3>National Service Scheme (NSS)</h3>
+                <p>General Volunteer</p>
+                <p>Engaged with diverse communities and team initiatives, strengthening my communication, empathy, and ability to connect with people from different backgrounds.</p>
+                <a href="https://docs.google.com/presentation/d/19CbHEsO7Rc31jhL1WsJJ_bFrNhfqpCf-/edit?usp=drive_link&ouid=114756792587879861690&rtpof=true&sd=true" class="btn btn-primary" target="_blank">
+                    <i class="fas fa-external-link-alt"></i> View Details
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact section">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-container">
+                <div class="contact-info scroll-animate">
+                    <h3>Contact Information</h3>
+                    <a href="mailto:ssarkar4483@gmail.com" class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>ssarkar4483@gmail.com</span>
+                    </a>
+                    <a href="tel:+919382980858" class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span>+91 9382980858</span>
+                    </a>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>West Bengal, India</span>
+                    </div>
+                    
+                    <!-- Social Links Section -->
+                    <div class="social-links-section">
+                        <h4>Connect With Me</h4>
+                        <div class="social-links-large">
+                            <a href="https://www.linkedin.com/in/suchismita-sarkar-09ba2430b/" target="_blank" class="social-link-large">
+                                <i class="fa-brands fa-linkedin"></i>
+                                <span class="social-link-text">LinkedIn</span>
+                            </a>
+                            <a href="https://github.com/suchismittaa" target="_blank" class="social-link-large">
+                                <i class="fa-brands fa-github"></i>
+                                <span class="social-link-text">GitHub</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form scroll-animate">
+                    <h3>Send Me a Message</h3>
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-paper-plane"></i> Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-social-links">
+                <a href="https://www.linkedin.com/in/suchismita-sarkar-09ba2430b/" target="_blank" title="LinkedIn">
+                    <i class="fa-brands fa-linkedin-in"></i>
+                </a>
+                <a href="https://github.com/suchismittaa" target="_blank" title="GitHub">
+                    <i class="fa-brands fa-github"></i>
+                </a>
+                <a href="mailto:ssarkar4483@gmail.com" title="Email">
+                    <i class="fa-solid fa-envelope"></i>
+                </a>
+            </div>
+            <p class="copyright">Designed & Developed by Suchismita Sarkar © 2025</p>
+        </div>
+    </footer>
+
+    <!-- Floating Action Button -->
+    <div class="fab" id="fab">
+        <i class="fas fa-ellipsis-v"></i>
+        <div class="fab-menu" id="fabMenu">
+            <div class="fab-option" onclick="scrollToTop()">
+                <i class="fas fa-arrow-up"></i> Scroll to Top
+            </div>
+            <div class="fab-option" onclick="downloadResume()">
+                <i class="fas fa-download"></i> Download Resume
+            </div>
+            <div class="fab-option" onclick="openContactForm()">
+                <i class="fas fa-envelope"></i> Contact Form
+            </div>
+        </div>
+    </div>
+
+    <!-- Chatbot - NOW VISIBLE AND POSITIONED CORRECTLY -->
+    <div class="chatbot-container">
+        <div class="chatbot-window" id="chatbotWindow">
+           <div class="chatbot-header">
+    <div class="chatbot-header-left">
+        <div class="chatbot-header-avatar">
+            <img src="chatbot-avatar.png" alt="SuchiBot Avatar" class="chatbot-header-avatar-img">
+        </div>
+        <h3>SuchiBot</h3>
+    </div>
+
+    <button class="chatbot-close" id="chatbotClose">
+        <i class="fas fa-times"></i>
+    </button>
+</div>
+
+
+            <div class="chatbot-messages" id="chatbotMessages">
+                <!-- Messages will be added here dynamically -->
+            </div>
+            <div class="chatbot-input-container">
+                <input type="text" class="chatbot-input" id="chatbotInput" placeholder="Type your message...">
+                <button class="chatbot-send" id="chatbotSend">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+        <button class="chatbot-toggle" id="chatbotToggle">
+            <i class="fas fa-comments"></i>
+        </button>
+    </div>
+
+    <script>
+        // Progress Bar
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            document.getElementById('progressBar').style.width = scrollPercent + '%';
+        });
+
+        // FAB Menu Toggle
+        document.getElementById('fab').addEventListener('click', function(e) {
+            e.stopPropagation();
+            document.getElementById('fabMenu').classList.toggle('active');
+        });
+
+        // Close FAB menu when clicking outside
+        document.addEventListener('click', function() {
+            document.getElementById('fabMenu').classList.remove('active');
+        });
+
+        // Scroll to Top
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            document.getElementById('fabMenu').classList.remove('active');
+        }
+
+        // Download Resume
+        function downloadResume() {
+            window.open('https://drive.google.com/drive/folders/1DH27iF8aXfaKUIVoBWw6ZntPLQNkXhl7', '_blank');
+            document.getElementById('fabMenu').classList.remove('active');
+        }
+
+        // Open Contact Form
+        function openContactForm() {
+            document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+            document.getElementById('fabMenu').classList.remove('active');
+        }
+
+        // Contact Form Submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+            
+            const mailtoLink = `mailto:ssarkar4483@gmail.com?subject=Message from ${name}&body=${encodeURIComponent(message)}%0D%0A%0D%0AFrom: ${name}%0D%0AEmail: ${email}`;
+            
+            window.location.href = mailtoLink;
+            
+            document.getElementById('contactForm').reset();
+        });
+
+        // Animated Counter
+        function animateCounters() {
+            const counters = document.querySelectorAll('.stat-number');
+            const speed = 200;
+            
+            counters.forEach(counter => {
+                const animate = () => {
+                    const value = +counter.getAttribute('data-count');
+                    const data = +counter.innerText;
+                    const time = value / speed;
+                    
+                    if (data < value) {
+                        counter.innerText = Math.ceil(data + time);
+                        setTimeout(animate, 1);
+                    } else {
+                        counter.innerText = value;
+                    }
+                }
+                
+                animate();
+            });
+        }
+
+        // Scroll Animations
+        function handleScrollAnimations() {
+            const elements = document.querySelectorAll('.scroll-animate');
+            
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementBottom = element.getBoundingClientRect().bottom;
+                
+                if (elementTop < window.innerHeight && elementBottom > 0) {
+                    element.classList.add('active');
+                }
+            });
+            
+            // Trigger counter animation when stats section is visible
+            const statsSection = document.querySelector('.stats');
+            const statsTop = statsSection.getBoundingClientRect().top;
+            
+            if (statsTop < window.innerHeight && statsTop > 0 && !statsSection.classList.contains('animated')) {
+                animateCounters();
+                statsSection.classList.add('animated');
+            }
+        }
+
+        // Initialize scroll animations
+        window.addEventListener('scroll', handleScrollAnimations);
+        window.addEventListener('load', handleScrollAnimations);
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+ 
+
+// Chatbot Implementation
+// ====================== DATA MODEL ======================
+
+// ====================== DATA MODEL ======================
+const profileData = {
+    name: "Suchismita Sarkar",
+    title: "Data & AI Enthusiast",
+    skills: {
+        programming: ["Python (Pandas, NumPy, Matplotlib, Seaborn, Scikit-learn)", "C++", "SQL"],
+        dataAnalytics: ["Data Wrangling", "Exploratory Data Analysis (EDA)", "Statistical Analysis", "Power BI", "Tableau"],
+        tools: ["Jupyter Notebook", "Google Sheets", "Excel", "VS Code", "AI Tools"],
+        mlandai: ["ML Algorithms", "Regression / Classification", "Model Training & Evaluation", "Basic Neural Networks"],
+        softSkills: ["Communication", "Team Collaboration", "Problem-Solving", "Presentation", "Strategic Thinking"]
+    },
+    projects: [
+        {
+            id: "ott",
+            name: "OTT Consumer Segmentation Analysis",
+            keywords: ["ott", "segmentation", "consumer", "recommendation"],
+            description:
+                "Implemented Random Forest, SVM and KNN on 1000+ user records to segment consumers by watch time, genre preference, and device usage. Achieved 94% accuracy with Random Forest, uncovering 3 key user segments and enabling personalized recommendations and targeted marketing strategies.",
+            tech: "Python, Pandas, NumPy, Scikit-learn",
+            link: "https://github.com/suchismittaa/OTT-Consumer-Segmentation",
+            reportLink: null, // fill if you have report link
+            meta: {
+                accuracy: "Around 94% accuracy, with Random Forest as the best-performing model.",
+                dataSize: "1000+ user records with watch time, genre preferences and device usage.",
+                duration: "Completed over multiple iterations as a self-driven analytics project.",
+                models: "Random Forest, SVM, KNN",
+                bestModel: "Random Forest"
+            }
+        },
+        {
+            id: "heart",
+            name: "Predicting Mortality of Heart Failure Patients",
+            keywords: ["heart", "mortality", "cardiac", "patients"],
+            description:
+                "Developed a machine learning model to predict mortality risk in heart failure patients using clinical data (age, ejection fraction, serum creatinine, blood pressure). Used Random Forest, XGBoost, and Logistic Regression on 12,000+ records and achieved 97% accuracy through feature selection and evaluation.",
+            tech: "Python, Random Forest, XGBoost, Logistic Regression, Pandas",
+            link: "https://github.com/suchismittaa/Predicting-Heart-Mortality-Rate",
+            reportLink: null,
+            meta: {
+                accuracy: "Around 97% accuracy on mortality prediction using ensemble models.",
+                dataSize: "12,000+ patient records with clinical and lab parameters.",
+                duration: "Developed as a full ML pipeline including feature selection and evaluation.",
+                models: "Random Forest, XGBoost, Logistic Regression",
+                bestModel: "Random Forest (most stable across runs)"
+            }
+        },
+        {
+            id: "credit",
+            name: "Credit-EDA",
+            keywords: ["credit", "loan", "risk", "eda"],
+            description:
+                "Conducted data cleaning, visualization, and exploratory analysis on credit risk datasets using Python (Pandas, Matplotlib, Seaborn) to assess customer loan applications. Identified key risk indicators through univariate, bivariate, and multivariate analysis and performed feature engineering on historical application data, enabling better risk assessment for lending decisions.",
+            tech: "Python, Pandas, Matplotlib, Seaborn",
+            link: "https://github.com/suchismittaa/Credit-EDA",
+            reportLink: null,
+            meta: {
+                accuracy: "This project focused on EDA, so success was measured through insights and features rather than a single accuracy score.",
+                dataSize: "Historical credit application and performance data with multiple applicant attributes.",
+                duration: "Completed as an intensive EDA project focusing on visual insights and feature engineering.",
+                models: "Exploratory Data Analysis with modelling-ready features prepared for downstream models.",
+                bestModel: "No single best model – core outcome was a cleaned, feature-rich dataset."
+            }
+        },
+        {
+            id: "energy",
+            name: "Energy Consumption Prediction",
+            keywords: ["energy", "power", "consumption", "forecast"],
+            description:
+                "Worked with three large real-world datasets (energy usage, weather, and holidays) to build a complete predictive analytics pipeline. Trained advanced ensemble models including LightGBM, XGBoost, AdaBoost, and CatBoost, achieving 91% prediction accuracy with strong generalization. Generated meaningful insights on consumption patterns, peak usage behavior, and forecasting trends.",
+            tech: "Python, LightGBM, XGBoost, AdaBoost, CatBoost",
+            link: "https://github.com/suchismittaa/Energy-Consumption-Prediction-using-ML",
+            reportLink: null,
+            meta: {
+                accuracy: "Around 91% prediction accuracy with tuned ensemble regression models.",
+                dataSize: "Three combined datasets: energy usage logs, weather data and holiday calendars.",
+                duration: "End-to-end project from data preparation to optimized model training and evaluation.",
+                models: "LightGBM, XGBoost, AdaBoost, CatBoost, RandomForest",
+                bestModel: "LightGBM (best trade-off of accuracy and generalization)."
+            }
+        },
+        {
+            id: "cardio",
+            name: "Cardiovascular Impact of Viral Infection Prediction",
+            keywords: ["cardio", "cardiovascular", "viral", "infection"],
+            description:
+                "Developed a Random Forest–based machine learning model to predict cardiovascular risks in patients with prior viral infections, achieving high accuracy and early-diagnosis capability. Performed data preprocessing, feature engineering, model evaluation, and optimization to build a reliable, scalable healthcare prediction system.",
+            tech: "Python, Random Forest, Feature Engineering",
+            link: "https://github.com/suchismittaa/Cardiovascular-Impact-of-Viral-Infection-Prediction",
+            reportLink: null,
+            meta: {
+                accuracy: "High classification accuracy of 91% on cardiovascular risk prediction, tuned for sensitivity and specificity.",
+                dataSize: "Clinical and infection-related features collected for patients with prior viral infections.",
+                duration: "Built alongside the research work, iterating on preprocessing, feature engineering and evaluation.",
+                models: "Random Forest, Logistic Regression, SVM, Naive Bayes, Descision Tree",
+                bestModel: "Random Forest"
+            }
+        }
+    ],
+    resume: {
+        summary:
+            "Data & AI Enthusiast with experience in data wrangling, EDA, and ML modeling. Skilled in Python, SQL, Power BI, Tableau. Strong hands-on project portfolio in segmentation, healthcare analytics, credit risk, and energy forecasting.",
+        link: "https://drive.google.com/drive/folders/1DH27iF8aXfaKUIVoBWw6ZntPLQNkXhl7",
+        downloadLink: "https://drive.google.com/drive/folders/1DH27iF8aXfaKUIVoBWw6ZntPLQNkXhl7"
+    },
+    contact: {
+        email: "ssarkar4483@gmail.com",
+        linkedin: "https://www.linkedin.com/in/suchismita-sarkar-09ba2430b/",
+        github: "https://github.com/suchismittaa"
+    },
+    education: [
+        {
+            title: "Bachelor of Technology in Information Technology",
+            institution: "Kalinga Institute of Industrial Technology",
+            duration: "2022 – Present",
+            location: "Bhubaneswar, India",
+            details: "CGPA: 7.8"
+        },
+        {
+            title: "Senior Secondary (CBSE)",
+            institution: "Kalyani Public School",
+            duration: "2022",
+            location: "Barasat, India",
+            details: "Percentile: 69%"
+        },
+        {
+            title: "Secondary (CBSE)",
+            institution: "Kalyani Public School",
+            duration: "2020",
+            location: "Barasat, India",
+            details: "Percentile: 89.4%"
+        }
+    ],
+    research: {
+        title: "Precise Prediction of Cardiovascular Impact in Patients with Viral Infections Using Intelligent Analytics",
+        conference:
+            "Research Publication – ICCCNet-2025, International Conference on Computing and Communication Networks (Manchester Metropolitan University, UK)",
+        description:
+            "Co-authored and presented a research paper focusing on predictive modelling for cardiovascular risk assessment in viral infection patients. Contributed to data preprocessing, intelligent analytics, and model evaluation, delivering high-accuracy predictions and clinically relevant insights to support healthcare decision-making.",
+        paperLink: "https://drive.google.com/drive/folders/1zVSoE167mwOABLoTQZOCRsZrPwrJL7sD",
+        certificateLink: "https://drive.google.com/drive/folders/1FATeHOMeu_fUj_yjX2YVuVX2g0N775rY"
+    },
+    certifications: [
+        {
+            name: "Data Science Training",
+            provider: "1Stop.AI",
+            description:
+                "Assisted in data preprocessing, feature engineering, and model development using Python (Scikit-learn, Pandas, NumPy). Applied algorithms and optimized model accuracy on real-world mentorship-led projects.",
+            link: "https://drive.google.com/drive/folders/1ibdz5jQDWErNDwSwVO-WKbCh_M0vJKTf"
+        },
+        {
+            name: "Business for Good: Fundamentals of Corporate Responsibility",
+            provider: "Coursera",
+            description:
+                "Learned principles of ethical business conduct, stakeholder trust, and responsible communication. Developed awareness of sustainability, corporate impact, and socially responsible decision-making.",
+            link: "https://drive.google.com/file/d/1iATEVv1wI80KFpnxsrgNrbcqWI7vrScu/view?usp=drive_link"
+        },
+        {
+            name: "Corporate Governance",
+            provider: "Coursera",
+            description:
+                "Gained understanding of organizational structure, compliance, and leadership accountability. Learned how businesses maintain transparency, strong governance, and effective decision frameworks.",
+            link: "https://drive.google.com/file/d/1QVEp3SKiaMR_VLQ_b-84dIr5lII2M85c/view?usp=drive_link"
+        },
+        {
+            name: "Generative AI: Introduction and Applications",
+            provider: "Coursera",
+            description:
+                "Gained practical understanding of LLMs, prompt design, and AI-driven content generation. Applied generative AI tools to enhance productivity, creativity, and communication workflows.",
+            link: "https://drive.google.com/file/d/141aH0pwwpbGGJhoBO2jFn_u4OziDvR3_/view?usp=drive_link"
+        },
+        {
+            name: "Ethical Decision Making for Success in the Tech Industry",
+            provider: "Coursera",
+            description:
+                "Trained in ethical communication, responsible data handling, and sound judgment in tech environments. Strengthened professionalism, integrity, and decision-making.",
+            link: "https://drive.google.com/file/d/118GrbeirjOWhtsG-t16TsfcsvHptxpTa/view?usp=drive_link"
+        },
+        {
+            name: "Generative AI Prompt Engineering Basics",
+            provider: "Coursera",
+            description:
+                "Learned structured prompt-writing techniques for accuracy, clarity, and task optimization. Improved ability to design prompts that automate content creation and streamline workflows.",
+            link: "https://drive.google.com/file/d/1K5p622ZUT0izrnbs1kAbU-v_2PpzFVs9/view?usp=drive_link"
+        },
+        {
+            name: "JAVA for Beginners",
+            provider: "Simplilearn",
+            description:
+                "Acquired foundational programming logic and problem-solving skills using Java. Strengthened structured thinking applicable to automation and workflows.",
+            link: "https://drive.google.com/file/d/1-_xIo4C9u3q5BRFeht3EMxQJ6ALyK9It/view?usp=drive_link"
+        },
+        {
+            name: "Getting Started with AWS Services Fundamentals",
+            provider: "Simplilearn",
+            description:
+                "Learned foundational cloud concepts including compute, storage, and networking. Gained exposure to cloud-based tools used in modern SaaS operations.",
+            link: "https://drive.google.com/file/d/1uAv4-Be1U91bEJtTe2IPd4St25Y5hKhY/view?usp=drive_link"
+        },
+        {
+            name: "Quantitative Research Job Simulation",
+            provider: "Forage",
+            description:
+                "Conducted structured data analysis and insight extraction aligned with research methodologies. Built reports and summaries translating data into business-focused recommendations.",
+            link: "https://drive.google.com/file/d/1ll6GlD7ab3zdZ5qLpb-NHGKRwwToLuCD/view?usp=drive_link"
+        },
+        {
+            name: "Prompt Engineering for ChatGPT",
+            provider: "Coursera",
+            description:
+                "Learned advanced prompting techniques for high-quality outputs and communication content. Applied AI-driven methods to streamline responses and knowledge tasks.",
+            link: "https://drive.google.com/file/d/1lgVNekxiObi95byv3sVXD_o_Lpuhi79b/view?usp=drive_link"
+        },
+        {
+            name: "All other certifications",
+            provider: "Suchismita Sarkar",
+            description: "Click below",
+            link: "https://drive.google.com/drive/folders/1-IOQCbEdsD1McvzSxwgp9Tm84UGJfW5x"
+        }
+        
+    ],
+    organizations: [
+        {
+            name: "National Service Scheme (NSS)",
+            role: "General Volunteer",
+            description:
+                "Engaged with diverse communities and team initiatives, strengthening communication, empathy, and the ability to connect with people from different backgrounds.",
+            link: "https://docs.google.com/presentation/d/19CbHEsO7Rc31jhL1WsJJ_bFrNhfqpCf-/edit?usp=drive_link&ouid=114756792587879861690&rtpof=true&sd=true"
+        }
+    ]
+};
+
+// ====================== STATE ======================
+let chatState = {
+    currentFlow: null,
+    projectDetails: null,
+    roleFitStep: 0,
+    roleFitData: {},
+    contactStep: 0,
+    contactData: {},
+    lastTopic: null,
+    lastProject: null,
+    lastSearchResults: null
+};
+
+// ====================== DOM HOOKS ======================
+const chatbotToggle = document.getElementById("chatbotToggle");
+const chatbotWindow = document.getElementById("chatbotWindow");
+const chatbotClose = document.getElementById("chatbotClose");
+const chatbotMessages = document.getElementById("chatbotMessages");
+const chatbotInput = document.getElementById("chatbotInput");
+const chatbotSend = document.getElementById("chatbotSend");
+
+// ====================== EVENT LISTENERS ======================
+if (chatbotToggle) chatbotToggle.addEventListener("click", openChatbot);
+if (chatbotClose) chatbotClose.addEventListener("click", closeChatbot);
+if (chatbotSend) chatbotSend.addEventListener("click", sendMessage);
+if (chatbotInput) {
+    chatbotInput.addEventListener("keypress", (e) => {
+        if (e.key === "Enter") {
+            e.preventDefault();
+            sendMessage();
+        }
+    });
+}
+
+// ====================== UI HELPERS ======================
+function openChatbot() {
+    if (!chatbotWindow) return;
+    chatbotWindow.classList.add("active");
+    if (chatbotMessages && chatbotMessages.children.length === 0) {
+        showWelcomeMessage();
+    }
+}
+
+function closeChatbot() {
+    if (!chatbotWindow) return;
+    chatbotWindow.classList.remove("active");
+}
+
+function addBotMessage(message) {
+    if (!chatbotMessages) return;
+    const messageElement = document.createElement("div");
+    messageElement.className = "message bot-message";
+    messageElement.innerHTML = message.replace(/\n/g, "<br>");
+    chatbotMessages.appendChild(messageElement);
+    scrollToBottom();
+}
+
+function addUserMessage(message) {
+    if (!chatbotMessages) return;
+    const messageElement = document.createElement("div");
+    messageElement.className = "message user-message";
+    messageElement.textContent = message;
+    chatbotMessages.appendChild(messageElement);
+    scrollToBottom();
+}
+
+function addQuickOptions(options) {
+    if (!chatbotMessages || !options.length) return;
+    const optionsContainer = document.createElement("div");
+    optionsContainer.className = "quick-options";
+
+    options.forEach((option) => {
+        const optionButton = document.createElement("button");
+        optionButton.className = "quick-option";
+        optionButton.textContent = option.text;
+        optionButton.addEventListener("click", () => handleQuickOption(option));
+        optionsContainer.appendChild(optionButton);
+    });
+
+    chatbotMessages.appendChild(optionsContainer);
+    scrollToBottom();
+}
+
+function showTypingIndicator() {
+    if (!chatbotMessages) return;
+    const typingIndicator = document.createElement("div");
+    typingIndicator.className = "typing-indicator";
+    typingIndicator.id = "typingIndicator";
+    for (let i = 0; i < 3; i++) {
+        const dot = document.createElement("div");
+        dot.className = "typing-dot";
+        typingIndicator.appendChild(dot);
+    }
+    chatbotMessages.appendChild(typingIndicator);
+    scrollToBottom();
+}
+
+function removeTypingIndicator() {
+    const typingIndicator = document.getElementById("typingIndicator");
+    if (typingIndicator) typingIndicator.remove();
+}
+
+function scrollToBottom() {
+    if (!chatbotMessages) return;
+    chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+}
+
+function playIntroAudio() {
+    const audio = new Audio("suchi-intro.mp3");
+    audio.play().catch(() => {
+        addBotMessage(
+            "I tried to play an audio introduction, but your browser blocked autoplay. Please click again or check autoplay permissions. 🎧"
+        );
+    });
+}
+
+// ====================== WELCOME ======================
+function showWelcomeMessage() {
+    const welcomeMessage = `
+        Hi, I'm <strong>SuchiBot</strong> 👋<br>
+        I represent <strong>${profileData.name}</strong>, a Data & AI enthusiast with experience in analytics, ML, and research.<br><br>
+        I can help you explore her <strong>skills</strong>, <strong>projects</strong>, <strong>research</strong>, <strong>certifications</strong>,
+        <strong>education</strong>, <strong>organizations</strong>, or even <strong>check role fit</strong> for your opening.<br><br>
+        You can also ask me to <strong>search</strong> anything or <strong>play an audio intro</strong>.<br><br>
+        What would you like to start with?
+    `;
+    addBotMessage(welcomeMessage);
+
+    addQuickOptions([
+        { text: "Play Audio Intro", action: "playIntro" },
+        { text: "View Skills", action: "viewSkills" },
+        { text: "See Projects", action: "viewProjects" },
+        { text: "View Research", action: "viewResearch" },
+        { text: "View Certificates", action: "viewCertificates" },
+        { text: "View Education", action: "viewEducation" },
+        { text: "View Organizations", action: "viewOrganizations" },
+        { text: "Get Resume", action: "getResume" },
+        { text: "Check Role Fit", action: "checkRoleFit" },
+        { text: "Contact Suchismita", action: "contact" }
+    ]);
+}
+
+// ====================== MESSAGE FLOW ======================
+function sendMessage() {
+    if (!chatbotInput) return;
+    const message = chatbotInput.value.trim();
+    if (!message) return;
+
+    addUserMessage(message);
+    chatbotInput.value = "";
+
+    showTypingIndicator();
+    setTimeout(() => {
+        removeTypingIndicator();
+        processUserInput(message);
+    }, 700);
+}
+
+// ====================== INTENT DETECTION ======================
+function normalize(text) {
+    return text.toLowerCase().trim();
+}
+
+function detectIntent(lowerMessage) {
+    if (chatState.currentFlow === "roleFit") return "roleFitFlow";
+    if (chatState.currentFlow === "contact") return "contactFlow";
+
+    if (/(^|\s)(hi|hello|hey|hii)(\s|$)/.test(lowerMessage)) return "greet";
+    if (/(bye|thank you|thanks)/.test(lowerMessage)) return "bye";
+
+    if (
+        lowerMessage.includes("introduce yourself") ||
+        lowerMessage.includes("who are you") ||
+        lowerMessage.includes("tell me about yourself") ||
+        lowerMessage.includes("audio intro") ||
+        lowerMessage.includes("play your intro")
+    )
+        return "introAudio";
+
+    if (lowerMessage.includes("project") || lowerMessage.includes("github")) return "project";
+
+    if (
+        lowerMessage.includes("research") ||
+        lowerMessage.includes("paper") ||
+        lowerMessage.includes("publication") ||
+        lowerMessage.includes("icccnet")
+    )
+        return "research";
+
+    if (
+        lowerMessage.includes("certificate") ||
+        lowerMessage.includes("certification") ||
+        lowerMessage.includes("course") ||
+        lowerMessage.includes("simulation")
+    )
+        return "certs";
+
+    if (lowerMessage.includes("nss") || lowerMessage.includes("organization") || lowerMessage.includes("volunteer"))
+        return "orgs";
+
+    if (
+        lowerMessage.includes("education") ||
+        lowerMessage.includes("college") ||
+        lowerMessage.includes("university") ||
+        lowerMessage.includes("degree") ||
+        lowerMessage.includes("btech") ||
+        lowerMessage.includes("b.tech")
+    )
+        return "education";
+
+    if (lowerMessage.includes("skill") || lowerMessage.includes("tech stack") || lowerMessage.includes("technology"))
+        return "skills";
+
+    if (lowerMessage.includes("resume") || lowerMessage.includes("cv") || lowerMessage.includes("profile"))
+        return "resume";
+
+    if (lowerMessage.includes("role fit") || lowerMessage.includes("suitable") || lowerMessage.includes("match"))
+        return "roleFit";
+
+    if (lowerMessage.includes("contact") || lowerMessage.includes("reach") || lowerMessage.includes("email"))
+        return "contact";
+
+    if (lowerMessage.includes("linkedin")) return "linkedin";
+    if (lowerMessage.includes("github profile")) return "githubProfile";
+
+    if (
+        lowerMessage.startsWith("search ") ||
+        lowerMessage.startsWith("find ") ||
+        lowerMessage.includes("look for ") ||
+        lowerMessage.includes("show all") ||
+        lowerMessage.includes("anything about")
+    )
+        return "search";
+
+    if (
+        lowerMessage.includes("more") ||
+        lowerMessage.includes("explain") ||
+        lowerMessage.includes("detail") ||
+        lowerMessage.includes("accuracy") ||
+        lowerMessage.includes("how long") ||
+        lowerMessage.includes("duration") ||
+        lowerMessage.includes("dataset") ||
+        lowerMessage.includes("data used") ||
+        lowerMessage.includes("models") ||
+        lowerMessage.includes("algorithms") ||
+        lowerMessage.includes("best model")
+    )
+        return "followup";
+
+    return "unknown";
+}
+
+function findProjectFromMessage(lowerMessage) {
+    for (const project of profileData.projects) {
+        if (project.keywords.some((k) => lowerMessage.includes(k))) {
+            return project;
+        }
+    }
+    return profileData.projects.find((p) => lowerMessage.includes(p.name.toLowerCase().split(" ")[0])) || null;
+}
+
+// ====================== PROJECT Q&A HELPER ======================
+function answerProjectQuestion(lowerMessage, project) {
+    const meta = project.meta || {};
+
+    // accuracy / performance
+    if (lowerMessage.includes("accuracy") || lowerMessage.includes("performance")) {
+        return `
+            <strong>${project.name}</strong><br>
+            ${meta.accuracy || "Performance was evaluated using standard accuracy and error metrics on validation/test sets."}<br><br>
+            For full evaluation details and metrics, you can explore the GitHub repo:<br>
+            <a href="${project.link}" target="_blank">🔗 Open GitHub project</a>
+            ${project.reportLink ? `<br><a href="${project.reportLink}" target="_blank">📄 View project report</a>` : ""}
+        `;
+    }
+
+    // models / algorithms
+    if (lowerMessage.includes("model") || lowerMessage.includes("models") || lowerMessage.includes("algorithm")) {
+        // best model questions
+        if (lowerMessage.includes("best") || lowerMessage.includes("performed best")) {
+            return `
+                <strong>${project.name}</strong><br>
+                Best-performing model: ${meta.bestModel || meta.models || "the top-performing model from the experiments."}<br><br>
+                You can see the full comparison of models in the GitHub repository:<br>
+                <a href="${project.link}" target="_blank">🔗 Open GitHub project</a>
+                ${project.reportLink ? `<br><a href="${project.reportLink}" target="_blank">📄 View project report</a>` : ""}
+            `;
+        }
+
+        return `
+            <strong>${project.name}</strong><br>
+            Key models used: ${meta.models || project.tech}.<br><br>
+            Full model training and comparison details are available here:<br>
+            <a href="${project.link}" target="_blank">🔗 Open GitHub project</a>
+            ${project.reportLink ? `<br><a href="${project.reportLink}" target="_blank">📄 View project report</a>` : ""}
+        `;
+    }
+
+    // dataset / data size
+    if (
+        lowerMessage.includes("dataset") ||
+        lowerMessage.includes("data size") ||
+        lowerMessage.includes("data used") ||
+        lowerMessage.includes("records") ||
+        lowerMessage.includes("rows")
+    ) {
+        return `
+            <strong>${project.name}</strong><br>
+            Dataset / data size: ${meta.dataSize || "the dataset was cleaned, engineered and split into train/test sets."}<br><br>
+            For schema, preprocessing and feature engineering details, please see:<br>
+            <a href="${project.link}" target="_blank">🔗 Open GitHub project</a>
+            ${project.reportLink ? `<br><a href="${project.reportLink}" target="_blank">📄 View project report</a>` : ""}
+        `;
+    }
+
+    // description / overview
+    if (
+        lowerMessage.includes("describe") ||
+        lowerMessage.includes("description") ||
+        lowerMessage.includes("about") ||
+        lowerMessage.includes("overview") ||
+        lowerMessage.includes("summary")
+    ) {
+        return `
+            <strong>${project.name}</strong><br>
+            ${project.description}<br><br>
+            For implementation details (code, notebooks, experiments), you can check:<br>
+            <a href="${project.link}" target="_blank">🔗 Open GitHub project</a>
+            ${project.reportLink ? `<br><a href="${project.reportLink}" target="_blank">📄 View project report</a>` : ""}
+        `;
+    }
+
+    // direct link request
+    if (
+        lowerMessage.includes("link") ||
+        lowerMessage.includes("repo") ||
+        lowerMessage.includes("repository") ||
+        lowerMessage.includes("github")
+    ) {
+        return `
+            <strong>${project.name}</strong><br>
+            Here’s the code repository:<br>
+            <a href="${project.link}" target="_blank">🔗 Open GitHub project</a>
+            ${project.reportLink ? `<br><a href="${project.reportLink}" target="_blank">📄 View project report</a>` : ""}
+        `;
+    }
+
+    // unknown / extra question – push them to GitHub/report
+    return `
+        <strong>${project.name}</strong><br>
+        That's a great question about this project. At a high level:<br><br>
+        ${project.description}<br><br>
+        For deeper technical details (feature engineering, hyperparameters, experiments, etc.), please explore:<br>
+        <a href="${project.link}" target="_blank">🔗 Open GitHub project</a>
+        ${project.reportLink ? `<br><a href="${project.reportLink}" target="_blank">📄 View project report</a>` : ""}
+    `;
+}
+
+// ====================== MAIN ROUTER ======================
+function processUserInput(message) {
+    const lowerMessage = normalize(message);
+    const intent = detectIntent(lowerMessage);
+
+    switch (intent) {
+        case "roleFitFlow":
+            processRoleFitInput(message);
+            return;
+        case "contactFlow":
+            processContactInput(message);
+            return;
+
+        case "skills":
+            showSkills();
+            return;
+
+        case "project": {
+            const matchedProject = findProjectFromMessage(lowerMessage);
+            if (matchedProject) {
+                // If the question is about a specific attribute, answer directly
+                if (
+                    lowerMessage.includes("accuracy") ||
+                    lowerMessage.includes("performance") ||
+                    lowerMessage.includes("model") ||
+                    lowerMessage.includes("algorithm") ||
+                    lowerMessage.includes("dataset") ||
+                    lowerMessage.includes("data size") ||
+                    lowerMessage.includes("data used") ||
+                    lowerMessage.includes("records") ||
+                    lowerMessage.includes("rows") ||
+                    lowerMessage.includes("best")
+                ) {
+                    chatState.lastTopic = "project";
+                    chatState.lastProject = matchedProject;
+                    const answer = answerProjectQuestion(lowerMessage, matchedProject);
+                    addBotMessage(answer);
+                    addQuickOptions([
+                        { text: "View full project details", action: "projectDetails", data: matchedProject },
+                        { text: "Open GitHub Repo", action: "openProjectGithub", data: matchedProject },
+                        ...(matchedProject.reportLink
+                            ? [{ text: "View Project Report", action: "openProjectReport", data: matchedProject }]
+                            : [])
+                    ]);
+                } else {
+                    showProjectDetails(matchedProject);
+                }
+            } else {
+                showProjects();
+            }
+            return;
+        }
+
+        case "research":
+            showResearch();
+            return;
+
+        case "certs":
+            showCertificates();
+            return;
+
+        case "orgs":
+            showOrganizations();
+            return;
+
+        case "education":
+            showEducation();
+            return;
+
+        case "resume":
+            showResume();
+            return;
+
+        case "roleFit":
+            startRoleFit();
+            return;
+
+        case "contact":
+            startContact();
+            return;
+
+        case "linkedin":
+            addBotMessage(
+                `You can view Suchismita's LinkedIn profile here:<br><a href="${profileData.contact.linkedin}" target="_blank">${profileData.contact.linkedin}</a>`
+            );
+            chatState.lastTopic = "links";
+            return;
+
+        case "githubProfile":
+            addBotMessage(
+                `You can explore her GitHub projects here:<br><a href="${profileData.contact.github}" target="_blank">${profileData.contact.github}</a>`
+            );
+            chatState.lastTopic = "links";
+            return;
+
+        case "greet":
+            addBotMessage(
+                "Hello! 👋 I'm SuchiBot, your guide to Suchismita’s skills, projects, research, certifications, education and organizations. What would you like to explore first?"
+            );
+            addQuickOptions([
+                { text: "Play Audio Intro", action: "playIntro" },
+                { text: "View Skills", action: "viewSkills" },
+                { text: "See Projects", action: "viewProjects" },
+                { text: "View Research", action: "viewResearch" },
+                { text: "View Certificates", action: "viewCertificates" },
+                { text: "View Education", action: "viewEducation" },
+                { text: "View Organizations", action: "viewOrganizations" },
+                { text: "Get Resume", action: "getResume" }
+            ]);
+            return;
+
+        case "bye":
+            addBotMessage("You're welcome! If you need to revisit her profile or projects later, just open SuchiBot again. 👋");
+            return;
+
+        case "followup":
+            handleFollowUp(lowerMessage);
+            return;
+
+        case "search":
+            handleSearch(lowerMessage);
+            return;
+
+        case "introAudio":
+            addBotMessage("Sure, here's a short audio introduction from Suchismita. 🎧");
+            playIntroAudio();
+            return;
+
+        default:
+            addBotMessage(
+                "I'm not fully sure about that specific question. I can walk you through Suchismita's <strong>skills</strong>, <strong>projects</strong>, <strong>research</strong>, <strong>certifications</strong>, <strong>education</strong>, or help you <strong>check role fit</strong> for your opening. You can also ask me to <strong>search</strong> something."
+            );
+            addQuickOptions([
+                { text: "View Skills", action: "viewSkills" },
+                { text: "See Projects", action: "viewProjects" },
+                { text: "View Research", action: "viewResearch" },
+                { text: "View Certificates", action: "viewCertificates" },
+                { text: "View Education", action: "viewEducation" },
+                { text: "Check Role Fit", action: "checkRoleFit" }
+            ]);
+    }
+}
+
+// ====================== FOLLOW-UPS ======================
+function handleFollowUp(lowerMessage) {
+    if (chatState.lastTopic === "project" && chatState.lastProject) {
+        const answer = answerProjectQuestion(lowerMessage, chatState.lastProject);
+        addBotMessage(answer);
+        addQuickOptions([
+            { text: "View full project details", action: "projectDetails", data: chatState.lastProject },
+            { text: "Open GitHub Repo", action: "openProjectGithub", data: chatState.lastProject },
+            ...(chatState.lastProject.reportLink
+                ? [{ text: "View Project Report", action: "openProjectReport", data: chatState.lastProject }]
+                : [])
+        ]);
+        return;
+    }
+
+    switch (chatState.lastTopic) {
+        case "skills":
+            addBotMessage(
+                "Would you like a deeper dive into her <strong>Python & ML stack</strong>, <strong>SQL & databases</strong>, or <strong>BI tools</strong> like Power BI and Tableau?"
+            );
+            break;
+        case "research":
+            addBotMessage(
+                "The research work connects directly to her healthcare ML project. I can explain either the <strong>methodology</strong> or the <strong>clinical impact</strong>, depending on what you care about most."
+            );
+            break;
+        case "certs":
+            addBotMessage(
+                "Most of her certifications cluster around <strong>analytics</strong>, <strong>AI & prompt engineering</strong>, and <strong>business/ethics</strong>. Tell me which area you want to focus on."
+            );
+            break;
+        case "education":
+            addBotMessage(
+                "I can summarise her academic performance or focus on specific years like B.Tech or school. What would you like to know more about?"
+            );
+            break;
+        default:
+            addBotMessage(
+                "I can go deeper on projects, skills, education or research. For example, you can say “Explain the energy project accuracy” or “Where does she study currently?”"
+            );
+    }
+}
+
+// ====================== GLOBAL SEARCH ======================
+function handleSearch(lowerMessage) {
+    chatState.currentFlow = null;
+    chatState.lastTopic = "search";
+
+    let term = lowerMessage
+        .replace("search", "")
+        .replace("find", "")
+        .replace("look for", "")
+        .replace("show me", "")
+        .replace("show all", "")
+        .replace("anything about", "")
+        .trim();
+
+    if (!term) {
+        addBotMessage(
+            'What would you like me to search for? For example:<br>• "search python projects"<br>• "find certifications"<br>• "search aws"'
+        );
+        return;
+    }
+
+    const results = { projects: [], skills: [], certs: [], education: [], research: [] };
+    const includesTerm = (text) => text && text.toLowerCase().includes(term);
+
+    profileData.projects.forEach((p) => {
+        if (
+            includesTerm(p.name) ||
+            includesTerm(p.description) ||
+            includesTerm(p.tech) ||
+            (p.keywords && p.keywords.some((k) => includesTerm(k)))
+        ) {
+            results.projects.push(p);
+        }
+    });
+
+    Object.values(profileData.skills).forEach((arr) => {
+        arr.forEach((s) => {
+            if (includesTerm(s)) results.skills.push(s);
+        });
+    });
+
+    profileData.certifications.forEach((c) => {
+        if (includesTerm(c.name) || includesTerm(c.provider) || includesTerm(c.description)) {
+            results.certs.push(c);
+        }
+    });
+
+    profileData.education.forEach((e) => {
+        if (includesTerm(e.title) || includesTerm(e.institution) || includesTerm(e.details)) {
+            results.education.push(e);
+        }
+    });
+
+    const r = profileData.research;
+    if (includesTerm(r.title) || includesTerm(r.conference) || includesTerm(r.description)) {
+        results.research.push(r);
+    }
+
+    chatState.lastSearchResults = results;
+    let msg = `Here’s what I found for <strong>“${term}”</strong>:<br><br>`;
+
+    if (
+        !results.projects.length &&
+        !results.skills.length &&
+        !results.certs.length &&
+        !results.education.length &&
+        !results.research.length
+    ) {
+        addBotMessage(msg + "No direct matches. You can try a broader word like “Python”, “projects”, or “certifications”.");
+        return;
+    }
+
+    if (results.projects.length) {
+        msg += "<strong>📁 Projects:</strong><br>";
+        results.projects.forEach((p) => {
+            msg += `• ${p.name} – <em>${p.tech}</em><br>`;
+        });
+        msg += "<br>";
+    }
+
+    if (results.skills.length) {
+        msg += "<strong>🧠 Skills:</strong><br>";
+        msg += "• " + [...new Set(results.skills)].join("<br>• ") + "<br><br>";
+    }
+
+    if (results.certs.length) {
+        msg += "<strong>📜 Certifications:</strong><br>";
+        results.certs.forEach((c) => {
+            msg += `• ${c.name} (${c.provider})<br>`;
+        });
+        msg += "<br>";
+    }
+
+    if (results.education.length) {
+        msg += "<strong>🎓 Education:</strong><br>";
+        results.education.forEach((e) => {
+            msg += `• ${e.title} – ${e.institution}<br>`;
+        });
+        msg += "<br>";
+    }
+
+    if (results.research.length) {
+        msg += "<strong>🧪 Research:</strong><br>";
+        msg += `• ${profileData.research.title}<br><br>`;
+    }
+
+    addBotMessage(msg);
+
+    addQuickOptions([
+        { text: "See Projects", action: "viewProjects" },
+        { text: "View Certificates", action: "viewCertificates" },
+        { text: "View Skills", action: "viewSkills" }
+    ]);
+}
+
+// ====================== QUICK OPTIONS ======================
+function handleQuickOption(option) {
+    addUserMessage(option.text);
+
+    switch (option.action) {
+        case "playIntro":
+            addBotMessage("Playing Suchismita's audio introduction 🎧");
+            playIntroAudio();
+            break;
+        case "viewSkills":
+            showSkills();
+            break;
+        case "viewProjects":
+            showProjects();
+            break;
+        case "projectDetails":
+            showProjectDetails(option.data);
+            break;
+        case "openProjectGithub":
+            window.open(option.data.link, "_blank");
+            addBotMessage("Opening GitHub project in a new tab 🔗");
+            break;
+        case "openProjectReport":
+            if (option.data.reportLink) {
+                window.open(option.data.reportLink, "_blank");
+                addBotMessage("Opening project report in a new tab 📄");
+            } else {
+                addBotMessage(
+                    "This project does not have a separate public report link yet, but all implementation details are available on GitHub."
+                );
+            }
+            break;
+        case "getResume":
+            showResume();
+            break;
+        case "openResume":
+            window.open(profileData.resume.link, "_blank");
+            addBotMessage("Opening resume in a new tab 🔗");
+            break;
+        case "downloadResume":
+            window.open(profileData.resume.downloadLink, "_blank");
+            addBotMessage("Opening resume download link 🔗");
+            break;
+        case "checkRoleFit":
+            startRoleFit();
+            break;
+        case "contact":
+            startContact();
+            break;
+        case "viewCertificates":
+            showCertificates();
+            break;
+        case "viewResearch":
+            showResearch();
+            break;
+        case "viewOrganizations":
+            showOrganizations();
+            break;
+        case "viewEducation":
+            showEducation();
+            break;
+        case "shareJD":
+            addBotMessage(
+                "You can paste the full JD here, and I’ll highlight the most relevant skills, projects, and certifications that align with it."
+            );
+            break;
+        case "end":
+            addBotMessage("Thank you for exploring Suchismita's profile! 👋");
+            break;
+        default:
+            processUserInput(option.text);
+    }
+}
+
+// ====================== CONTENT RENDERERS ======================
+function showSkills() {
+    chatState.currentFlow = null;
+    chatState.lastTopic = "skills";
+
+    const skillsMessage = `
+        Here's a structured view of Suchismita's skills 👇<br><br>
+        💻 <strong>Programming</strong><br>
+        • ${profileData.skills.programming.join("<br>• ")}<br><br>
+        📊 <strong>Data Analytics</strong><br>
+        • ${profileData.skills.dataAnalytics.join("<br>• ")}<br><br>
+        🛠 <strong>Tools</strong><br>
+        • ${profileData.skills.tools.join("<br>• ")}<br><br>
+        🗄 <strong>Databases</strong><br>
+        • ${profileData.skills.databases.join("<br>• ")}<br><br>
+        🤝 <strong>Soft Skills</strong><br>
+        • ${profileData.skills.softSkills.join("<br>• ")}
+    `;
+    addBotMessage(skillsMessage);
+
+    addQuickOptions([
+        { text: "See Projects", action: "viewProjects" },
+        { text: "View Certificates", action: "viewCertificates" },
+        { text: "View Education", action: "viewEducation" },
+        { text: "Check Role Fit", action: "checkRoleFit" }
+    ]);
+}
+
+function showProjects() {
+    chatState.currentFlow = null;
+    chatState.lastTopic = "project";
+
+    const projectsMessage = `
+        Suchismita has worked on several end-to-end data projects. Key highlights:<br><br>
+        • OTT Consumer Segmentation Analysis – marketing & personalization<br>
+        • Predicting Mortality of Heart Failure Patients – healthcare analytics<br>
+        • Credit-EDA – credit risk & lending decisions<br>
+        • Energy Consumption Prediction – forecasting & optimization<br>
+        • Cardiovascular Impact of Viral Infection Prediction – clinical risk modelling<br><br>
+        You can click a project below or ask about it by name (e.g., “Tell me about the energy project”).
+    `;
+    addBotMessage(projectsMessage);
+
+    const quickOptions = profileData.projects.map((project) => ({
+        text: project.name,
+        action: "projectDetails",
+        data: project
+    }));
+    quickOptions.push({ text: "View GitHub Profile", action: "githubProfile" });
+
+    addQuickOptions(quickOptions);
+}
+
+function showProjectDetails(project) {
+    chatState.currentFlow = null;
+    chatState.lastTopic = "project";
+    chatState.lastProject = project;
+
+    const projectDetails = `
+        <div class="project-details">
+            <h4>${project.name}</h4>
+            <p>${project.description}</p>
+            <p class="tech"><strong>Tech stack:</strong> ${project.tech}</p>
+            ${
+                project.meta
+                    ? `
+            <p><strong>Key metrics:</strong> ${project.meta.accuracy}</p>
+            <p><strong>Dataset:</strong> ${project.meta.dataSize}</p>
+            `
+                    : ""
+            }
+            <p><a href="${project.link}" target="_blank">🔗 View this project on GitHub</a></p>
+            ${project.reportLink ? `<p><a href="${project.reportLink}" target="_blank">📄 View project report</a></p>` : ""}
+        </div>
+    `;
+    addBotMessage(projectDetails);
+
+    const options = [
+        { text: "Ask about this project's accuracy", action: "projectDetails", data: project },
+        { text: "Open GitHub Repo", action: "openProjectGithub", data: project },
+        ...(project.reportLink ? [{ text: "View Project Report", action: "openProjectReport", data: project }] : []),
+        { text: "View Other Projects", action: "viewProjects" },
+        { text: "View Research", action: "viewResearch" },
+        { text: "Check Role Fit", action: "checkRoleFit" }
+    ];
+    addQuickOptions(options);
+}
+
+function showResume() {
+    chatState.currentFlow = null;
+    chatState.lastTopic = "resume";
+
+    const resumeMessage = `
+        Here's a concise view of <strong>${profileData.name}</strong>:<br><br>
+        • Data & AI Enthusiast with experience in data wrangling, EDA, and ML modelling.<br>
+        • Strong hands-on work in segmentation, healthcare analytics, credit risk and energy forecasting.<br>
+        • Comfortable with Python, SQL, Power BI, Tableau and modern ML libraries.<br><br>
+        What would you like to do next?
+    `;
+    addBotMessage(resumeMessage);
+
+    addQuickOptions([
+        { text: "Open Resume", action: "openResume" },
+        { text: "Download PDF", action: "downloadResume" },
+        { text: "View Skills", action: "viewSkills" },
+        { text: "See Projects", action: "viewProjects" }
+    ]);
+}
+
+function showCertificates() {
+    chatState.currentFlow = null;
+    chatState.lastTopic = "certs";
+
+    let certMessage = `Here are some of Suchismita's key certifications and simulations 📜<br><br>`;
+    profileData.certifications.forEach((cert) => {
+        certMessage += `
+            <strong>${cert.name}</strong> — ${cert.provider}<br>
+            ${cert.description}<br>
+            <a href="${cert.link}" target="_blank">🔗 View certificate</a><br><br>
+        `;
+    });
+    addBotMessage(certMessage);
+
+    addQuickOptions([
+        { text: "View Projects", action: "viewProjects" },
+        { text: "View Research", action: "viewResearch" },
+        { text: "View Education", action: "viewEducation" },
+        { text: "Get Resume", action: "getResume" }
+    ]);
+}
+
+function showResearch() {
+    chatState.currentFlow = null;
+    chatState.lastTopic = "research";
+
+    const r = profileData.research;
+    const researchMessage = `
+        <strong>Research Publication</strong> 🧪<br><br>
+        <strong>${r.title}</strong><br>
+        ${r.conference}<br><br>
+        ${r.description}<br><br>
+        <a href="${r.paperLink}" target="_blank">📄 View Paper PDF / Folder</a><br>
+        <a href="${r.certificateLink}" target="_blank">📜 View Conference Certificate</a>
+    `;
+    addBotMessage(researchMessage);
+
+    addQuickOptions([
+        { text: "See Related Project", action: "projectDetails", data: profileData.projects[4] },
+        { text: "View Certificates", action: "viewCertificates" },
+        { text: "Get Resume", action: "getResume" }
+    ]);
+}
+
+function showOrganizations() {
+    chatState.currentFlow = null;
+    chatState.lastTopic = "orgs";
+
+    let orgMessage = `Here are some of the organizations Suchismita has contributed to 🤝<br><br>`;
+    profileData.organizations.forEach((org) => {
+        orgMessage += `
+            <strong>${org.name}</strong> — ${org.role}<br>
+            ${org.description}<br>
+            <a href="${org.link}" target="_blank">🔗 View details</a><br><br>
+        `;
+    });
+    addBotMessage(orgMessage);
+
+    addQuickOptions([
+        { text: "View Education", action: "viewEducation" },
+        { text: "View Skills", action: "viewSkills" },
+        { text: "View Projects", action: "viewProjects" }
+    ]);
+}
+
+function showEducation() {
+    chatState.currentFlow = null;
+    chatState.lastTopic = "education";
+
+    let eduMessage = `Here's a quick overview of Suchismita's education 🎓<br><br>`;
+    profileData.education.forEach((edu) => {
+        eduMessage += `
+            <strong>${edu.title}</strong><br>
+            ${edu.institution}<br>
+            ${edu.duration} — ${edu.location}<br>
+            ${edu.details}<br><br>
+        `;
+    });
+    addBotMessage(eduMessage);
+
+    addQuickOptions([
+        { text: "View Organizations", action: "viewOrganizations" },
+        { text: "View Projects", action: "viewProjects" },
+        { text: "Get Resume", action: "getResume" }
+    ]);
+}
+
+
+(() => {
+  const cards = document.querySelectorAll('.certificate-card');
+  if (!cards.length) return console.log('No .certificate-card elements found.');
+
+  console.log('--- Checking certificate link clickability ---');
+  cards.forEach((card, i) => {
+    const link = card.querySelector('.certificate-link');
+    const r = link ? link.getBoundingClientRect() : card.getBoundingClientRect();
+    const cx = Math.round(r.left + r.width/2);
+    const cy = Math.round(r.top + r.height/2);
+    const topEl = document.elementFromPoint(cx, cy);
+    const clickable = topEl === link || link.contains(topEl) || topEl.closest && topEl.closest('.certificate-card') === card;
+    console.log(`#${i}`,
+      '\n  linkSelector:', !!link,
+      '\n  center:', cx, cy,
+      '\n  topEl:', topEl && (topEl.tagName + (topEl.id?('#'+topEl.id):'') + (topEl.className?('.'+topEl.className.replace(/\s+/g,'.')):'')),
+      '\n  computed pointer-events:', topEl ? window.getComputedStyle(topEl).pointerEvents : '',
+      '\n  clickable?', clickable
+    );
+  });
+})();
+
+
+
+
+
+  </script>
+</body>
+</html>
