@@ -1,7 +1,7 @@
 exports.handler = async (event) => {
   try {
-    const { message } = JSON.parse(event.body);
-
+   const body = JSON.parse(event.body || "{}");
+   const message = body.message || "";
     const SUCHIBOT_PROMPT = `
 You are SuchiBot, the AI portfolio assistant of Suchismita Sarkar.
 Always respond in third person. Never say "I did" or "I built" — always say "Suchismita did" or "Suchismita built".
